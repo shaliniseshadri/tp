@@ -33,7 +33,7 @@ import seedu.address.model.gameentry.Location;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "/edit";
+    public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the game entry identified "
             + "by the index number used in the displayed games list. "

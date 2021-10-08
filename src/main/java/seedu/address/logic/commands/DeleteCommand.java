@@ -16,7 +16,7 @@ import seedu.address.model.Model;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "/delete";
+    public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the game entry identified by the index number used in the displayed game list.\n"
