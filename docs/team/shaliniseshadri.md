@@ -3,31 +3,28 @@ layout: page
 title: Shalini Seshadri's Project Portfolio Page
 ---
 
-### Project: Game Book 
+### Project: GameBook 
 
-Game Book is a ... 
+GameBook is a desktop app designed for you to track your gambling performance and view instant analysis of 
+your gambling records.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **Enhancements to existing features**:<br>
+  Change AB3's Storage Component to match GameBook.<br> 
+  Adding Tests for GameBook's Storage Class. 
 
-* **New Feature**: 
+* **New Feature**:<br> 
+  Implementing Graphical Analysis: Used JavaFX LineChart Object to plot the average profit across dates on the GraphPanel 
+  and integrate into the UI.<br>
+  Implementing Statistical Analysis: Implemented the classes which calculate the Mean and Median and display on the GUI
 
 * **Code contributed**: [RepoSense link]()
 
-* **Project management**:
-
-* **Enhancements to existing features**:
- 
-* **Documentation**:
-  * User Guide:
-   
-  * Developer Guide:
-
-
-* **Community**:
+* **Project management**:<br>
+  Created and managed issues for v1.1<br> 
+  Assisted in maintaining the milestone tracker in subsequent iterations
   
-* **Tools**:
-
-
-* _{you can add/remove categories in the list above}_
+* **Community**:
+  Reviewed PRs: [TO_BE_ADDED]
+  
