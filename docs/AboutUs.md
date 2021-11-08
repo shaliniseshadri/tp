@@ -18,7 +18,7 @@ You can reach us at the email `e0543894[at]u.nus.edu`
 
 * Role: Developer
 * Responsibilities:
-    * Refactoring Model classes from AB3.
+    * Refactoring Model classes from AB3, and implemented warnings for duplicate game entries and future dates.
 
 
 <img src="images/dannylty.png" width="200px">

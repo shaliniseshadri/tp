@@ -43,11 +43,10 @@ title: Developer Guide
     * [Delete Command](#delete-command)
     * [Find Command](#find-command)
     * [Saving data](#saving-data)
-    
-    
 
+
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 GameBook is based on [_AddressBook Level-3_](https://github.com/se-edu/addressbook-level3) developed by the [_SE-EDU initiative_](https://se-education.org/) 
@@ -60,15 +59,13 @@ Copyright by Gil Kalai - https://gilkalai.wordpress.com/
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png
 - edit.png
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -216,9 +213,8 @@ The `Storage` component helps save Game Book data and User Preferences to a json
 ### Common classes
 
 Classes used by multiple components are in the `seedu.gamebook.commons` package.
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -317,14 +313,14 @@ details about how classes in UI and Logic interact to execute a delete command.
 
 ### Finding game entries
 Finding a game entry requires user input from the CLI. Multiple keywords can be used to search the list using the format 
-`find [KEYWORD_1] [KEYWORD_2] ...`. By calling `find [KEYWORD]` the `GameName`, `Location` and `Tags` of the game entries 
+`find [KEYWORD_1] [KEYWORD_2] ...`. By calling `find [KEYWORD]` the `GameType`, `Location` and `Tags` of the game entries 
 in the `GameEntryList` are searched, and the game entries containing the input keywords are displayed in the list. 
 A blank or empty keyword is considered as an invalid, and if the game entries in the list don't contain the keyword, 
 an empty list is displayed. The validity of the input command is checked by `GameBookParser`. 
 
 The below provides a step-by-step breakdown of the mechanism of finding game entries. Assume that the user has already 
 launched GameBook, and the app has loaded data from storage. Also assume that the displayed list contains more than 1 game entry 
-and contains a game entry with `GameName` "Poker".
+and contains a game entry with `GameType` "Poker".
 1. The user inputs `find poker` which calls `MainWindow#executeCommand()`. 
 2. `MainWindow#executeCommand()` passes the user's input and UI information to `LogicManager#execute()` to process. 
 3. `LogicManager#execute()` calls `GameBookParser#parse()` which checks the validity of the command then parses the input.  
@@ -405,9 +401,8 @@ Found below is a step-by-step break down of the mechanism of updating the statis
   current `ObservableList<GameEntry>` with the new `ObservableList<GameEntry>` and `StatsPanel#getStats()` is called
 * Subsequently, `StatsPanel#getStats()` calls the `Average#getOverallAverage(List<GameEntry>)` and `Median#getOverallMedian(List<GameEntry>)`
 methods which recalculates the value of the mean and median and resets the value of the text fields in the UI.
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Additional Guides**
 
 * [Documentation guide](Documentation.md)
@@ -415,9 +410,8 @@ methods which recalculates the value of the mean and median and resets the value
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 
 * [Product scope](#product-scope)
@@ -631,9 +625,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **GUI**: Graphical User Interface
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Manual testing**
 
 * [Launch and shutdown](#launch-and-shutdown)
@@ -666,6 +659,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
        
 
+
 ### Add Command
 1. Adding a game entry:
    1. Test case: `add /g poker /s 20 /e 34 /date 2021-11-05 10:15`
@@ -682,6 +676,8 @@ testers are expected to do more *exploratory* testing.
       Expected: GameBook displays an error message, because user must provide a way for GameBook to know the profit, either
       by providing start amount (/s) and end amount (/e), or by providing profit directly (/p).
    4. Other incorrect add commands to try: `add`, `add /g poker /p ten`, `add /g poker /p 30 /date 1st january`.
+
+
 
 ### Edit Command
 
@@ -738,8 +734,8 @@ Note: Use `list` to display the whole game entry list or `find [KEYWORDS]` to di
 
 2. Finding game entries when the list of game entries is not empty 
 
-    1. Test case: `find poker` [finding by `GameName`]<br>
-    Expected: The resulting list contains all the game entries which have its `GameName` as "poker". If there are no entries that match 
+    1. Test case: `find poker` [finding by `GameType`]<br>
+    Expected: The resulting list contains all the game entries which have its `GameType` as "poker". If there are no entries that match 
        the search pattern then `0 game entries listed!` is displayed
        
     2. Test case: `find home` [finding by `Location`]<br> 

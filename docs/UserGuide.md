@@ -94,6 +94,11 @@ Term | Description
 
 ### GameEntry Fields:
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: When looking at commands in the **Features** section, refer to here for the format of each parameter.<br>
+</div>
+
 Parameter | Description
 --------|------------------
 **GAME_TYPE** | Refers to the type of the game you wish to record.<br>Eg: Poker, Roulette, Blackjack, etc.
@@ -201,7 +206,9 @@ Format:<br>
 Edits an existing game entry in **GameBook**. <br>
 
 Parameters:<br>
-`INDEX`, `[GAME_TYPE]`, `[PROFIT]`, `[DATE]`, `[DURATION]`, `[LOCATION]`, `[TAGS]`<br><br>
+- `INDEX` - Numbers from 1-999
+- `[GAME_TYPE]`
+- `[PROFIT]`, `[DATE]`, `[DURATION]`, `[LOCATION]`, `[TAGS]`<br><br>
 Format:<br>
 `edit INDEX [/g GAME_TYPE] [/p PROFIT] [/date DATE] [/dur DURATION] [/loc LOCATION] [/tag TAGS]`
 
