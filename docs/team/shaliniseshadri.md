@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 
 * **New Features**:<br>
 Implementing Graphical Analysis of game entries:
-   - Used JavaFX LineChart to plot the average profit across dates on the GraphPanel
+   * Used JavaFX LineChart to plot the average profit across dates on the GraphPanel
   and integrate them into the GUI.<br>
      The graph feature provides users with a visualisation of their average profits 
      across the last 20 dates. This supports our user story of being able to view analysis of their game statistics
@@ -31,7 +31,7 @@ Implementing Graphical Analysis of game entries:
      through JavaFX better. <br>
      
   Implementing Statistical Analysis of game entries:
-    - Implemented the classes which calculate the Mean and Median and integrate them into the GUI <br> 
+    * Implemented the classes which calculate the Mean and Median and integrate them into the GUI <br> 
       The calculation of mean and median of the overall profits of the users provides users with analysis of their 
       overall average profits. The statistics are re-calculated and updated after every command and displayed on the GUI.
       This supports our user story of being able to view game statistics to evaluate their performance.<br> 
@@ -40,6 +40,7 @@ Implementing Graphical Analysis of game entries:
       feature which helped in further improving the Graphical Analysis feature.
       
 
+
 * **Documentation**: 
   * Developer Guide: 
     - Wrote the design section and added the class diagram for Storage
@@ -47,6 +48,7 @@ Implementing Graphical Analysis of game entries:
     - Wrote the implementation, Use Cases and instructions for manual testing sections for the Find Command 
     - Miscellaneous minor edits while reviewing the DG
     
+
   * User Guide:
     - Added the Terminology section to the User Guide
     - Miscellaneous minor formatting edits
