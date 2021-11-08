@@ -43,6 +43,7 @@ public class GameBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -72,6 +73,38 @@ public class GameBookParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    /**
+     * Parses user input into command for execution after checking constraints (in this case, if game entry list is
+     * visible).
+     *
+     * @param userInput              full user input string
+     * @param isGameEntryListVisible boolean that shows whether the game list is currently displayed.
+     * @return the command based on the user input
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public Command parseCommand(String userInput, boolean isGameEntryListVisible) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.INVALID_COMMAND_MESSAGE));
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
+
+        //These commands are not accepted when game list is not displayed.
+        if (!isGameEntryListVisible) {
+            if (commandWord.equals(EditCommand.COMMAND_WORD)) {
+                throw new ParseException(EditCommand.MESSAGE_FAILURE_WITHOUT_GAME_LIST);
+            }
+            if (commandWord.equals(DeleteCommand.COMMAND_WORD)) {
+                throw new ParseException(DeleteCommand.MESSAGE_FAILURE_WITHOUT_GAME_LIST);
+            }
+        }
+
+        return this.parseCommand(userInput);
     }
 
 }

@@ -13,6 +13,7 @@ public class GameEntriesDateComparator implements Comparator<GameEntry> {
     @Override
     public int compare(GameEntry gameOne, GameEntry gameTwo) {
         requireAllNonNull(gameOne, gameTwo);
+        requireAllNonNull(gameOne.getDate(), gameTwo.getDate());
         return gameOne.compareTo(gameTwo);
     }
 }

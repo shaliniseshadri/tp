@@ -8,20 +8,23 @@ import seedu.gamebook.model.gameentry.GameEntryContainsKeywordPredicate;
 
 /**
  * Finds and lists all game entries in game book whose contents matches
- * any given argument keyword. Matches game name, location, or tags.
+ * any given argument keyword. Matches game type, location, or tags.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
     public static final FindCommand DUMMY = new FindCommand();
-    public static final String COMMAND_FORMAT = COMMAND_WORD + " KEYWORD [MORE_KEYWORDS]...";
-    public static final String MESSAGE_USAGE = COMMAND_FORMAT;
+    public static final String COMMAND_FORMAT = COMMAND_WORD + " KEYWORDS";
+    public static final String COMMAND_NOTE = "Multiple keywords are allowed. Each keyword should be separated by a "
+        + "whitespace.";
+    public static final String MESSAGE_USAGE = COMMAND_FORMAT + "\n" + COMMAND_NOTE;
     public static final String COMMAND_EXAMPLE = COMMAND_WORD + " friends mbs";
     public static final String COMMAND_SUMMARY = "Finds all game entries whose contents contain any of "
         + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n\n"
         + "Format:\n"
         + COMMAND_FORMAT + "\n\n"
+        + COMMAND_NOTE + "\n\n"
         + "Example:\n" + COMMAND_EXAMPLE;
 
     private final GameEntryContainsKeywordPredicate predicate;

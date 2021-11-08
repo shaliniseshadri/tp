@@ -2,6 +2,7 @@ package seedu.gamebook.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.gamebook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.gamebook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.gamebook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.gamebook.logic.commands.CommandTestUtil.showGameEntryAtIndex;
@@ -11,7 +12,6 @@ import static seedu.gamebook.testutil.TypicalIndexes.INDEX_SECOND_GAMEENTRY;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.gamebook.commons.core.Messages;
 import seedu.gamebook.commons.core.index.Index;
 import seedu.gamebook.model.Model;
 import seedu.gamebook.model.ModelManager;
@@ -44,7 +44,8 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredGameEntryList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_GAMEENTRY_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -73,7 +74,8 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_GAMEENTRY_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test

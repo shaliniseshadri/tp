@@ -15,12 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DURATION = new Prefix("/dur");
     public static final Prefix PREFIX_LOCATION = new Prefix("/loc");
     public static final Prefix PREFIX_TAG = new Prefix("/tag");
-    public static final Prefix PREFIX_ADD = new Prefix("add");
-    public static final Prefix PREFIX_EDIT = new Prefix("edit");
-    public static final Prefix PREFIX_FIND = new Prefix("find");
-    public static final Prefix PREFIX_DELETE = new Prefix("delete");
-    public static final Prefix PREFIX_EXIT = new Prefix("exit");
-
-
 
 }

@@ -70,8 +70,8 @@ public class MainApp extends Application {
 
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s gamebook book and {@code userPrefs}. <br>
-     * The data from the sample gamebook book will be used instead if {@code storage}'s gamebook book is not found,
-     * or an empty gamebook book will be used instead if errors occur when reading {@code storage}'s gamebook book.
+     * The data from the sample game book will be used instead if {@code storage}'s game book is not found,
+     * or an empty game book will be used instead if errors occur when reading {@code storage}'s game book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyGameBook> gameBookOptional;
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping GameBook ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

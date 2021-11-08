@@ -1,0 +1,27 @@
+@startuml
+
+start
+:User inputs an add command;
+:GameBookParser parses input;
+
+if () then ([valid add command])
+  :A new GameEntry is created;
+  :command parsed as AddCommand object containing the GameEntry;
+  :AddCommand executed;
+  :GameBook adds GameEntry into list of game entries and sorts it by date;
+  :Updated GameEntryList saved to storage;
+  if() then([GameEntry with same game name
+   and date exists, or date is in future])
+    :GameBook displays success message with accompanying alert(s)
+    and updates displayed game entries list, graph and statistics;
+  else ([else])
+    :GameBook displays success message and updates
+     displayed game entries list, graph and statistics;
+  endif
+
+else ([invalid add command])
+  :Error message shown;
+
+endif
+stop
+@enduml

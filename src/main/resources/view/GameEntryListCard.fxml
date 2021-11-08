@@ -25,13 +25,13 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="gameType" text="\$gameType" styleClass="cell_big_label" />
+        <Label fx:id="gameType" text="\$gameType" styleClass="cell_big_label" wrapText="true"/>
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
       <Label fx:id="profit" styleClass="cell_small_label" text="\$profit" alignment="TOP_RIGHT"/>
       <Label fx:id="durationMinutes" styleClass="cell_small_label" text="\$durationMinutes" />
-      <Label fx:id="gameLocation" styleClass="cell_small_label" text="\$gameLocation" />
+      <Label fx:id="gameLocation" styleClass="cell_small_label" text="\$gameLocation" wrapText="true"/>
 
     </VBox>
   </GridPane>

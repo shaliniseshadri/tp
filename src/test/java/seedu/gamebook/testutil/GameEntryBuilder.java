@@ -162,12 +162,13 @@ public class GameEntryBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code GameEntry} that we are building.
      */
     public GameEntryBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
+
 
     /**
      * Builds a default GameEntry.

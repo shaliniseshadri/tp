@@ -64,7 +64,7 @@ public class GameEntryUtil {
     public static String getEditGameEntryDescriptorDetails(EditGameEntryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getDate().ifPresent(date ->
-                sb.append(String.format("%s%s ", PREFIX_DATE, date.toString()))
+                sb.append(String.format("%s %s" + " ", PREFIX_DATE, date.toString()))
         );
 
 
@@ -83,7 +83,7 @@ public class GameEntryUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                // do nothing
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }

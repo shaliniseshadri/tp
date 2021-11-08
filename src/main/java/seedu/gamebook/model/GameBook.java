@@ -39,7 +39,8 @@ public class GameBook implements ReadOnlyGameBook {
     }
 
     /**
-     * Returns true if a game entry with the same identity as {@code gameEntry} exists in the game book.
+     * Returns true if a game entry with the same identity as {@code gameEntry} exists in the game book. Game entries
+     * have the same identity if they have the same game type and date.
      */
     public boolean hasGameEntry(GameEntry gameEntry) {
         requireNonNull(gameEntry);
@@ -47,18 +48,16 @@ public class GameBook implements ReadOnlyGameBook {
     }
 
     /**
-     * Adds a game entry to the game book.
-     * The game entry must not already exist in the game book.
+     * Adds a game entry to the game book and sorts the game entries by date.
      */
     public void addGameEntry(GameEntry gameEntry) {
         gameEntries.add(gameEntry);
     }
 
     /**
-     * Replaces the given game entry {@code target} in the list with {@code editedGameEntry}.
+     * Replaces the given game entry {@code target} in the list with {@code editedGameEntry} and sorts the list by date
+     * to ensure it remains in sorted order.
      * {@code target} must exist in the game book.
-     * The game entry identity of {@code editedGameEntry} must not be the same as another existing game entry in the
-     * game book.
      */
     public void setGameEntry(GameEntry target, GameEntry editedGameEntry) {
         requireNonNull(editedGameEntry);
@@ -76,7 +75,7 @@ public class GameBook implements ReadOnlyGameBook {
 
     @Override
     public String toString() {
-        return gameEntries.asUnmodifiableObservableList().size() + " game entries";
+        return gameEntries.asUnmodifiableObservableList().size() + " game entries" + gameEntries;
         // TODO: refine later
     }
 

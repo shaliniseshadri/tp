@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<GameEntry> filteredGameEntries;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given gameBook and userPrefs.
      */
     public ModelManager(ReadOnlyGameBook gameBook, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -73,12 +73,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setGameBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setGameBookFilePath(addressBookFilePath);
+    public void setGameBookFilePath(Path gameBookFilePath) {
+        requireNonNull(gameBookFilePath);
+        userPrefs.setGameBookFilePath(gameBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== GameBook ================================================================================
 
     public void setGameBook(ReadOnlyGameBook gameBook) {
         this.gameBook.resetData(gameBook);
@@ -113,11 +113,11 @@ public class ModelManager implements Model {
         gameBook.setGameEntry(target, editedGameEntry);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Game Entries List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedGameBook}
      */
     @Override
     public ObservableList<GameEntry> getFilteredGameEntryList() {
@@ -141,12 +141,16 @@ public class ModelManager implements Model {
         if (!(obj instanceof ModelManager)) {
             return false;
         }
-
-        // state check
         ModelManager other = (ModelManager) obj;
+
         return gameBook.equals(other.gameBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredGameEntries.equals(other.filteredGameEntries);
+    }
+
+    @Override
+    public String toString() {
+        return gameBook.toString();
     }
 
 }

@@ -1,10 +1,10 @@
 package seedu.gamebook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.gamebook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
-import seedu.gamebook.commons.core.Messages;
 import seedu.gamebook.commons.core.index.Index;
 import seedu.gamebook.logic.commands.exceptions.CommandException;
 import seedu.gamebook.model.Model;
@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
     public static final DeleteCommand DUMMY = new DeleteCommand();
     public static final String COMMAND_WORD = "delete";
     public static final String COMMAND_SPECIFICATION = "INDEX must be a positive integer and cannot be bigger than the "
-        + "number of entries in your game list.";
+        + "number of entries in the displayed game list.";
     public static final String COMMAND_EXAMPLE = "Assume that there is at least one game entry in GameBook now.\n"
         + COMMAND_WORD + " 1";
     public static final String COMMAND_FORMAT = COMMAND_WORD + " INDEX";
@@ -32,6 +32,10 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_FORMAT + "\n" + COMMAND_SPECIFICATION;
 
     public static final String MESSAGE_DELETE_GAME_ENTRY_SUCCESS = "Deleted game entry: \n%1$s";
+    public static final String COMMAND_NOT_ACCEPTED_WITHOUT_GAME_LIST = "This command can only be used when a game list"
+        + " is shown. Please use \"list\" to show all game entries.";
+    public static final String MESSAGE_FAILURE_WITHOUT_GAME_LIST = COMMAND_FORMAT + "\n"
+        + COMMAND_NOT_ACCEPTED_WITHOUT_GAME_LIST;
 
     private final Index targetIndex;
 
@@ -49,7 +53,7 @@ public class DeleteCommand extends Command {
         List<GameEntry> lastShownList = model.getFilteredGameEntryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_GAMEENTRY_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         GameEntry gameEntryToDelete = lastShownList.get(targetIndex.getZeroBased());

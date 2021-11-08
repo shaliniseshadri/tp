@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0543894[at]u.nus.edu`
 
 ## Project team
 
@@ -16,10 +16,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/yzhilong)]
 [[portfolio](team/yzhilong.md)]
 
-* Role: PLACEHOLDER
+* Role: Developer
 * Responsibilities:
-    * PLACEHOLDER.
-    * PLACEHOLDER.
+    * Refactoring Model classes from AB3.
 
 
 <img src="images/dannylty.png" width="200px">
@@ -58,5 +57,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/BenjaminLHR)]
 [[portfolio](team/benjaminlhr.md)]
 
-* Role: Placeholder
-* Responsibilities: Placeholder
+* Role: Developer
+* Responsibilities: Refactoring Ui components and MainApp from AB3, implementation of sorting and changing behaviour towards duplicate entries.

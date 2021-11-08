@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                             PREFIX_PROFIT, PREFIX_DURATION, PREFIX_LOCATION, PREFIX_TAG);
 
         } catch (TokenizerException te) {
-            throw new ParseException(ArgumentTokenizer.MESSAGE_DUPLICATE_FLAGS);
+            throw new ParseException(te.getMessage());
         }
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
