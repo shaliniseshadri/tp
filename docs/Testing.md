@@ -4,7 +4,8 @@ title: Testing guide
 ---
 
 * Table of Contents
-{:toc}
+* [Running tests](#running-tests)
+* [Types of tests](#types-of-tests)
 
 --------------------------------------------------------------------------------------------------------------------
 
