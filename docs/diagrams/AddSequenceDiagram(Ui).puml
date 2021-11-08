@@ -1,7 +1,6 @@
 @startuml
 !include style.puml
 
-Actor User as user USER_COLOR
 
 box Ui UI_COLOR_T1
 participant ":ResultDesplay" as ResultDisplay UI_COLOR
@@ -14,7 +13,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 end box
 
-user -> MainWindow : execute("add /g Poker /p 15")
+[-> MainWindow : execute("add /g Poker /p 15")
 activate MainWindow
 
 MainWindow -> LogicManager : execute("add /g Poker /p 15")
@@ -40,4 +39,6 @@ activate GraphPanel
 
 GraphPanel --> MainWindow
 deactivate GraphPanel
+
+[<--MainWindow
 @enduml

@@ -42,7 +42,7 @@ Implementing Graphical Analysis of game entries:
 
 * **Documentation**: 
   * Developer Guide: 
-    - Wrote the design section and added the UML diagram for Storage
+    - Wrote the design section and added the class diagram for Storage
     - Wrote the implementation section and added the sequence diagram for the Graph and Statistics feature
     - Wrote the implementation, Use Cases and instructions for manual testing sections for the Find Command 
     - Miscellaneous minor edits while reviewing the DG
@@ -63,6 +63,7 @@ Implementing Graphical Analysis of game entries:
 
 * **Community**:
   Reviewed PRs:<br>
-  https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/137 <br>
-  https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/229
+  [https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/137](#https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/137) <br>
+  [https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/229](#[https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/229)
   
+

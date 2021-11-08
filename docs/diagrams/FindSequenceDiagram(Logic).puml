@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GameBookParser" as GameBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":StorageManager" as StorageManager STORAGE_COLOR
+end box
+
+[-> LogicManager : execute("find poker sentosa")
+activate LogicManager
+
+LogicManager -> GameBookParser : parseCommand("find poker sentosa", true)
+activate GameBookParser
+
+create FindCommandParser
+GameBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> GameBookParser
+deactivate FindCommandParser
+
+GameBookParser -> FindCommandParser : parse("poker sentosa")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+FindCommandParser --> GameBookParser : f
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> GameBookParser
+destroy FindCommandParser
+
+GameBookParser --> LogicManager : f
+deactivate GameBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredGameEntryList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+LogicManager -> StorageManager : saveGameBook(gameBook)
+activate StorageManager
+
+StorageManager --> LogicManager
+deactivate StorageManager
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

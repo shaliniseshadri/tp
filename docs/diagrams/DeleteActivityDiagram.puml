@@ -11,9 +11,8 @@ if () then ([Command is parsed as
 DeleteCommand])
 :DeleteCommand is executed;
 :Selected GameEntry is deleted from Storage;
-:GameEntryList is updated and shown;
-:Graph is updated and shown;
-:Statistics is updated and shown;
+:GameEntryList, Graph and Statistics
+ are updated and displayed;
 :Command success message is displayed;
 else ([Exception is thrown])
 :Error message is displayed;

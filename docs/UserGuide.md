@@ -18,13 +18,12 @@ If you enjoy casual gambling sessions with your friends and family or love going
 
 * [Quick Start](#quick-start)
 
-
 * [Terminology](#terminology)
     * [Syntax and Symbols used in the User Guide](#syntax-and-symbols-used-in-the-user-guide)
     * [Technical Terms](#technical-terms)
     * [GameEntry Fields](#gameentry-fields)
- 
-   
+
+
 *  [Features](#features)
     * [Adding a game entry](#adding-a-game-entry-add)
     * [Listing all game entries](#listing-all-game-entries--list)
@@ -41,8 +40,8 @@ If you enjoy casual gambling sessions with your friends and family or love going
 
 * [FAQ](#faq)
 
-
 * [Command Summary](#command-summary)
+
 
 <div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------

@@ -3,7 +3,8 @@ layout: dg
 title: Developer Guide
 ---
 **Table of Contents**
-* [Acknowldegements](#acknowledgements)
+
+* [Acknowledgements](#acknowledgements)
 
 * [Setting up, getting started](#setting-up-getting-started)
 
@@ -15,16 +16,18 @@ title: Developer Guide
     * [Storage Component](#storage-component)
     * [Common Classes](#common-classes)
     
+
 * [Implementation](#implementation)
     * [Adding a game entry](#adding-a-gameentry)
     * [Editing a game entry](#editing-a-gameentry)
     * [Deleting a game entry](#deleting-a-gameentry)
-    * [Finding a game entry](#finding-game-entries)  
+    * [Finding game entries](#finding-game-entries)  
     * [Graphical analysis of game entries](#graphical-analysis-of-game-entries)
     * [Additional game statistics](#additional-game-statistics)
     
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-    
+
+* [Appendix: Additional guides](#appendix-additional-guides)
+
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
@@ -32,18 +35,18 @@ title: Developer Guide
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
     
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
+* [Appendix: Manual Testing](#appendix-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
-    * [Adding a game entry](#add-command)
-    * [Editing a game entry](#edit-command)
-    * [Deleting a game entry](#delete-command)
-    * [Finding a game entry](#find-command)
+    * [Add Command](#add-command)
+    * [Edit Command](#edit-command)
+    * [Delete Command](#delete-command)
+    * [Find Command](#find-command)
     * [Saving data](#saving-data)
-    
-    
 
+
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 GameBook is based on [_AddressBook Level-3_](https://github.com/se-edu/addressbook-level3) developed by the [_SE-EDU initiative_](https://se-education.org/) 
@@ -56,14 +59,13 @@ Copyright by Gil Kalai - https://gilkalai.wordpress.com/
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png
 - edit.png
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -125,7 +127,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GameEntryListPanel`,
+The UI consists of a `MainWindow` that is made up of parts e.g. `CommandBox`, `ResultDisplay`, `GameEntryListPanel`,
 `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
@@ -142,8 +144,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `GameEntry` object residing in the `Model`. The graph
 and statistics displays also depend on `GameEntryList`.
 
-Below is a sequence diagram that shows how the UI parts interact 
-when a command is executed. (e.g. a delete command)
+Below is a sequence diagram that shows how some of the Ui components interact when a command is executed. (in this case a `delete` command)
 
 ![DeleteSequenceDiagram(UI)](images/DeleteSequenceDiagramUI.png)
 
@@ -167,7 +168,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 ![SequenceDiagramForDeleteCommandLogic](images/DeleteSequenceDiagramLogic.png)
 <br>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` and `DeleteCommand` should end at the 
 destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -212,14 +213,13 @@ The `Storage` component helps save Game Book data and User Preferences to a json
 ### Common classes
 
 Classes used by multiple components are in the `seedu.gamebook.commons` package.
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding a GameEntry
+### Adding a game entry
 
 The below provides a step-by-step break down of the mechanism for adding a game entry. Assume that the user has already
 launched `GameBook` and the app has loaded data from storage.
@@ -227,8 +227,7 @@ launched `GameBook` and the app has loaded data from storage.
 1. The user inputs a command, such as `add /g Poker /p 35 /dur 40m /loc Resort World Sentosa Casino
    /dur 50m /date 2021-10-21 15:10` which calls upon `MainWindow#executeCommand()`.
 2. `MainWindow#executeCommand()` passes the user's input to `LogicManager#execute()`to process, which calls upon `GameBookParser#parseCommand()`.
-3. `GameBookParser#parseCommand()` parses the input with the help of `AddCommandParser#parse()`. If input is valid, a new `GameEntry` object is created,
-   followed by an `AddCommand` object containing the `GameEntry`. The `AddCommand` object is then returned by `GameBookParser#parseCommand()`. 
+3. `GameBookParser#parseCommand()` parses the input and returns an `AddCommand`. 
 4. `LogicManager#execute()` executes `AddCommand` by calling `AddCommand#execute()`, which adds the new entry to a `List` and sorts it by date.
 5. `AddCommand#execute()` then encapsulates the result of the command execution in a new `CommandResult` object
    to its caller, `LogicManager#execute()`.
@@ -236,19 +235,23 @@ launched `GameBook` and the app has loaded data from storage.
 7. `MainWindow#executeCommand()` executes `resultDisplay#setFeedbackToUser()` to display the message from `CommandResult` to the user.
 8. `MainWindow#executeCommand()` calls `StatsPanel#updateStats()` and `GraphPanel#updateGameEntryList()` to update the statistics and graph with the new game entry list.
 
-The following activity and sequence diagrams illustrate the mechanism of adding a new game entry. To reduce clutter, the
-sequence diagram will only focus on Logic and Model components.
+The following activity and sequence diagrams illustrate the mechanism of adding a new game entry.
 ![Activity diagram of an add command](images/AddActivityDiagram.png)
+
+Note that the second sequence diagram is a continuation of the first.
 ![Sequence diagram of an add command (Ui)](images/AddSequenceDiagram(Ui).png)
 ![Sequence diagram of an add command (Logic onwards)](images/AddSequenceDiagram(Logic).png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` and `AddCommand` should end at the 
+destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-### Editing a GameEntry
+### Editing a game entry
 Editing a game entry requires user input from the CLI. The `GameBook` parser will check the validity of the input. It
 is valid if
 * The list of games currently displayed is not empty, and the chosen index is a valid index.
 * At least one field is chosen to be edited.
-* The formats of all fields entered, such as game type, start amount, end amount, location etc must be in the correct format.
+* The formats of all fields entered, such as game name, start amount, end amount, location etc must be in the correct format.
 
 Assume that the user has already launched `GameBook` and the app currently displays this:
 ![GameBook UI](images/GameBook.png)
@@ -266,14 +269,17 @@ The below provides a step-by-step break down of the mechanism for editing a game
 9. `MainWindow#executeCommand()` calls`StatsPanel#updateStats()`and `GraphPanel#updateGameEntryList()` to update the
    statistics and graph with the new game entry list.
 
-The following diagrams illustrates the process of executing an `edit` command.
+The following diagrams illustrates the process of executing an `edit` command. The Ui components for the sequence diagram
+are omitted as it is very similar to the first half of the sequence diagram under "Adding a GameEntry" above.
 
 ![Activity diagram of an edit command](images/EditActivityDiagram.png) <br>
-![UI sequence diagram of an edit command](images/EditSequenceDiagram.png) <br>
-![Logic sequence diagram of an edit command](images/EditSequenceDiagram(Logic).png)
+![Sequence diagram of an edit command (Logic onwards)](images/EditSequenceDiagram(Logic).png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` and `EditCommand` should end at the 
+destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-### Deleting a GameEntry
+### Deleting a game entry
 Deleting a game entry requires user input from the CLI. The format of input should
 be `delete [INDEX]`.
 The user should obtain the index of the game entry to be deleted
@@ -306,20 +312,20 @@ details about how classes in UI and Logic interact to execute a delete command.
 
 ### Finding game entries
 Finding a game entry requires user input from the CLI. Multiple keywords can be used to search the list using the format 
-`find [KEYWORD_1] [KEYWORD_2] ...`. By calling `find [KEYWORD]` the `GameName`, `Location` and `Tags` of the game entries 
+`find [KEYWORD_1] [KEYWORD_2] ...`. By calling `find [KEYWORD]` the `GameType`, `Location` and `Tags` of the game entries 
 in the `GameEntryList` are searched, and the game entries containing the input keywords are displayed in the list. 
 A blank or empty keyword is considered as an invalid, and if the game entries in the list don't contain the keyword, 
 an empty list is displayed. The validity of the input command is checked by `GameBookParser`. 
 
 The below provides a step-by-step breakdown of the mechanism of finding game entries. Assume that the user has already 
 launched GameBook, and the app has loaded data from storage. Also assume that the displayed list contains more than 1 game entry 
-and contains a game entry with `GameName` "Poker".
+and contains a game entry with `GameType` "Poker".
 1. The user inputs `find poker` which calls `MainWindow#executeCommand()`. 
 2. `MainWindow#executeCommand()` passes the user's input and UI information to `LogicManager#execute()` to process. 
 3. `LogicManager#execute()` calls `GameBookParser#parse()` which checks the validity of the command then parses the input.  
    Since the input and command format are valid, no error message is displayed.
 4. Next, a `GameEntryContainsKeywordPredicate` is created with the search keywords
-5. After parsing the input, a FindCommand is created and returned with the `GameEntryContainsKeywordPredicate` which is then 
+5. After parsing the input, a `FindCommand` is created and returned with the `GameEntryContainsKeywordPredicate` which is then 
    executed by calling `FindCommand#execute()`
 6. Then the `filteredGameEntries` list is updated with the `GameEntryContainsKeywordPredicate` by calling `Model#updateFilteredGameEntryList()`
 7. `FindCommand#execute()` returns a `CommandResult` which contains the number of entries matching the search keyword 
@@ -328,9 +334,9 @@ and contains a game entry with `GameName` "Poker".
    statistics and graph with the new game entry list.
    
 Below are the activity and sequence diagrams for the find command 
-![Activity Diagram for find command]()
+![Activity Diagram for find command](images/FindActivityDiagram.png)
 
-![Sequence Diagram for find command]()
+![Sequence Diagram for find command](images/FindSequenceDiagram(Logic).png)
 
 Please refer to the sequence diagrams in [UI Component](#ui-component) and [Logic Component](#logic-component) for
 details about how classes in UI and Logic interact to execute a find command.
@@ -394,20 +400,24 @@ Found below is a step-by-step break down of the mechanism of updating the statis
   current `ObservableList<GameEntry>` with the new `ObservableList<GameEntry>` and `StatsPanel#getStats()` is called
 * Subsequently, `StatsPanel#getStats()` calls the `Average#getOverallAverage(List<GameEntry>)` and `Median#getOverallMedian(List<GameEntry>)`
 methods which recalculates the value of the mean and median and resets the value of the text fields in the UI.
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Appendix: Additional Guides**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
+
+* [Product scope](#product-scope)
+* [User stories](#user-stories)
+* [Use cases](#use-cases)
+* [Non-Functional Requirements](#non-functional-requirements)
+* [Glossary](#glossary)
 
 ### Product scope
 
@@ -428,20 +438,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | add a new game entry         |                  |
+| `* * *`  | new user                                   | add a new game entry         | keep track of my games                 |
 | `* * *`  | new user                                   | delete my game entries         | clear entries with erroneous data                 |
 | `* * *`  | new user                                   | log my gambling statistics on a per game basis    | keep track of my spending                 |
-| `* * *`  | new user                                   | input any type of game         | include any game I want instead of choosing from preset list of games                 |
+| `* * *`  | new user                                   | input any type of game         | include any game I want instead of choosing from a preset list of games                 |
 | `* * *`  | new user                                   | save my net earnings and losses         | view data from my previous games                 |
 | `* * *`  | forgetful user                             | edit my previous game entries         | add details I missed out on previously                 |
 | `* *`    | user who frequents multiple gambling locations   | input location I played at               | organize and sort my data by location                                                                       |
 | `* *`    | user who does not like scrolling                | find game entries using relevant keywords                | view my data quickly                                  |
 | `* *`    | expert user                | see analysis of my game statistics               | evaluate my game performance                                   |
-| `* *`    | user who vlogs                | View an aesthetically pleasant UI                | show it to my audience in my videos                                   |
+| `* *`    | user who vlogs                | view an aesthetically pleasant UI                | show it to my audience in my videos                                   |
 | `* *`    | user who is easily affected by emotions                | tag games which I made emotional decisions in                | understand how it has affected my earnings                                   |
 | `* *`    | user who gambles frequently                | see the statistics on my expenditure                | justify my gambling habits to my family, that it is not an addiction                              |
 | `*`      | user who switches between computers frequently | backup my data securely           | easily create copies of it to other computers                                                 |
-| `*`      | user whose hard drive is almost full | specify where the app data is stored           |                                                  |
+| `*`      | user whose hard drive is almost full | specify where the app data is stored           | so that I can save to another drive instead of my almost full hard drive                                                 |
 | `*`      | user who gambles against friends frequently | analyze my performance when playing against specific friends           | avoid betting large amounts when playing against stronger friends                                                 |
 | `*`      | busy user | see how much time I spend on each game           | utilize my time better                                                 |
 | `*`      | busy user | see the profit per unit time analysis of different games           | decide which game to play to maximize rate of earnings                                                 |
@@ -450,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | thrillseeking user | see mean and variance calculations for different games           | choose the one with the highest variance to have fun                                                 |
 | `*`      | user who frequents places with an entry fee | add costs such as entry-fee into the overall calculation           | get a more accurate view of my profits                                                 |
 | `*`      | organized user | save different filters or sort conditions           | quickly view custom selections that are important to me                                                 |
-| `*`      | user who loves alcohol | tags games that I played when I am drinking           | see how alcohols affect my performance                                                |
+| `*`      | user who loves alcohol | tags games that I played when I am drinking           | see how alcohol affect my performance                                                |
 
 
 ### Use cases
@@ -469,9 +479,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User entered the entry in an incorrect format.
-  * 1a1. GameBook shows an error message to inform user what went wrong.
+  * 1a1. GameBook shows an error message, telling the user the correct command format.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
   
   
 **Use case: View entries**
@@ -480,22 +490,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list all entries.
 2. GameBook shows all entries.
-3. 
+
    Use case ends.
 
 **Extensions**
 
-* 1a. User requests to <u>find entries by keyword (UC**)</u>.
-    * 1a1. GameBook shows a filtered list of entries.
-  
-      Use case ends.
+* 1a. User requests to <u>find entries by keyword (UC01)</u>.
+    * 1a1. GameBook shows a filtered list of entries. 
+      
+    Use case ends.
 
 **Use case: Edit an entry**
 
 **MSS**
 
-1. User enters an edit command.
-2. GameBook updates itself with the edited entry, and displays success message and any accompanying warnings.
+1. User requests to edit a game entry.
+2. GameBook updates itself with the edited entry, and displays a success message, along with any accompanying warnings.
 
    Use case ends.
 
@@ -530,7 +540,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User requests to delete an entry when game entry list is not displayed.
-    * 1a1. GameBook shows an error message.
+    * 1a1. GameBook shows an error message, telling the user the correct command format.
   
       Use case resumes at step 1.
 * 1b. User uses `find KEYWORDS` to find specific game entries in the GameBook.
@@ -558,7 +568,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User doesn't enter a keyword or enters an empty keyword 
     
-    * 2a1. GameBook shows an error message 
+    * 2a1. GameBook shows an error message, telling the user the correct command format.
       
         Use case resumes at step 2. 
     
@@ -600,8 +610,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -610,15 +618,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. A novice should be able to grasp the basic functionalities of the system without too much difficulty.
 5. The user interface should be clear, so that new users can use the app without too much difficulty.
 6. A user should be able to easily back up data.
-7. The product is offered free online.
+7. The product is offered for free online.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-
+* **GUI**: Graphical User Interface
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Manual testing**
 
-## **Appendix: Instructions for manual testing**
+* [Launch and shutdown](#launch-and-shutdown)
+* [Add Command](#add-command)
+* [Edit Command](#edit-command)
+* [Delete Command](#delete-command)
+* [Find Command](#find-command)
+* [Saving data](#saving-data)
 
 Given below are instructions to test the app manually.
 
@@ -643,6 +658,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
        
 
+
 ### Add Command
 1. Adding a game entry:
    1. Test case: `add /g poker /s 20 /e 34 /date 2021-11-05 10:15`
@@ -660,19 +676,21 @@ testers are expected to do more *exploratory* testing.
       by providing start amount (/s) and end amount (/e), or by providing profit directly (/p).
    4. Other incorrect add commands to try: `add`, `add /g poker /p ten`, `add /g poker /p 30 /date 1st january`.
 
+
+
 ### Edit Command
 
 Suppose GameBook currently displays this:<br>
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/GameBook.png" width="600" />
 
-1. Editing a game entry when the list of games displayed is not empty.
+1. Editing a game entry while the list of games displayed is not empty.
 
     1. Prerequisites: The list of games shown is non-empty.
 
     1. Test case: `edit 1 /g mahjong`<br>
        Expected: First game entry has its name change from `Poker` to `Mahjong`. No other changes are observed.
 
-    1. Test case: `edit 1 /date 2021-09-22 12:40`<br>
+    1. Test case: `edit 1 /date 2021-09-21 12:39`<br>
        Expected: First game is now at index 2, while the game originally at index 2 is now at index 1. The list of games shown are still sorted by date.
 
     1. Test case: `edit 0 ...`<br>
@@ -682,8 +700,8 @@ Suppose GameBook currently displays this:<br>
        Expected: Similar to previous.
        
 
-### Delete Command
 
+### Delete Command
 Note: Use `list` to display the whole game entry list or `find [KEYWORDS]` to display a filtered list.
 1. Deleting a game entry while a list of game entries is shown. For this test, assume that the size of the list is larger than 1.<br>
     
@@ -715,8 +733,8 @@ Note: Use `list` to display the whole game entry list or `find [KEYWORDS]` to di
 
 2. Finding game entries when the list of game entries is not empty 
 
-    1. Test case: `find poker` [finding by `GameName`]<br>
-    Expected: The resulting list contains all the game entries which have its `GameName` as "poker". If there are no entries that match 
+    1. Test case: `find poker` [finding by `GameType`]<br>
+    Expected: The resulting list contains all the game entries which have its `GameType` as "poker". If there are no entries that match 
        the search pattern then `0 game entries listed!` is displayed
        
     2. Test case: `find home` [finding by `Location`]<br> 
@@ -735,6 +753,11 @@ Note: Use `list` to display the whole game entry list or `find [KEYWORDS]` to di
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
+   
+    1. Test case: Change the field of a game entry in `/data/gamebook.json` into an invalid argument for the field (eg. changing the startAmount to `abc123`) before opening GameBook.
+        1. Note: Correct format of arguments can be found in our [User Guide](UserGuide.md).
+    
+        Expected: GameBook will open with an empty game list, and will overwrite the corrupted data file once a new game is added.
+           
+    1. Test case: Change the field of a game entry in `/data/gamebook.json` into an invalid argument for the field (eg. changing the startAmount to `abc123`) while GameBook is open, then do some operation that edits the game entry list. <br>
+    Expected: GameBook will overwrite the erroneous data and continue functioning as per normal.

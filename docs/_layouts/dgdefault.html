@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-<!-- Side navigation -->
-<div style="float:left" class="sidenav">
-    <a id="sec" href="#">add</a>
-    <a id="sec" href="#">your</a>
-    <a id="norm" href="#">links</a>
-    <a id="norm" href="#">here</a>
-</div>
-
 <body>
 {%- include head.html -%}
 
 {%- include header.html -%}
 
-<main class="page-content" aria-label="Content" style="padding-left: 220px">
+<main class="page-content" aria-label="Content">
     <div class="wrapper">
         {{ content }}
     </div>

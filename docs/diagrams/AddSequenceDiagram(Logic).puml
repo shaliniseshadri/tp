@@ -73,8 +73,11 @@ deactivate CommandResult
 
 AddCommand --> LogicManager :result
 deactivate AddCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommand -[hidden]-> LogicManager
+destroy AddCommand
 
-LogicManager -> StorageManager : save game book
+LogicManager -> StorageManager : saveGameBook(gameBook)
 activate StorageManager
 
 StorageManager --> LogicManager
