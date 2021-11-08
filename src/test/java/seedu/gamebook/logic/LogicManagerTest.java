@@ -1,7 +1,7 @@
 package seedu.gamebook.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.gamebook.commons.core.Messages.MESSAGE_INVALID_GAMEENTRY_DISPLAYED_INDEX;
+import static seedu.gamebook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.gamebook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.gamebook.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.gamebook.logic.parser.CliSyntax.PREFIX_DURATION;
@@ -21,6 +21,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.gamebook.logic.commands.AddCommand;
 import seedu.gamebook.logic.commands.CommandResult;
+import seedu.gamebook.logic.commands.DeleteCommand;
 import seedu.gamebook.logic.commands.ListCommand;
 import seedu.gamebook.logic.commands.exceptions.CommandException;
 import seedu.gamebook.logic.parser.exceptions.ParseException;
@@ -69,7 +70,8 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_GAMEENTRY_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            DeleteCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -115,7 +117,7 @@ public class LogicManagerTest {
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
             Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(inputCommand);
+        CommandResult result = logic.execute(inputCommand, true);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
@@ -155,7 +157,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
-        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand, true));
         assertEquals(expectedModel, model);
     }
 

@@ -3,7 +3,7 @@ package seedu.gamebook.logic.parser;
 import seedu.gamebook.logic.commands.HelpCommand;
 import seedu.gamebook.logic.parser.exceptions.ParseException;
 
-public class HelpCommandParser {
+public class HelpCommandParser implements Parser<HelpCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

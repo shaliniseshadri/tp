@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+
+box "UI" UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":GraphPanel" as GraphPanel UI_COLOR
+end box
+
+box "Model" MODEL_COLOR_T1
+participant ":Average" as Average MODEL_COLOR
+end box
+
+
+[-> MainWindow : executeCommand("delete 1")
+activate MainWindow
+
+MainWindow -> GraphPanel : updateGameEntryList(gameEntryList)
+activate GraphPanel
+
+
+
+GraphPanel -> Average : getAverageDate(gameEntryList)
+activate Average
+Average --> GraphPanel : //TreeMap of average profits//
+deactivate Average
+
+
+GraphPanel --> MainWindow : //updated series is added to the graph//
+deactivate GraphPanel
+
+
+[<--MainWindow
+deactivate MainWindow
+@enduml

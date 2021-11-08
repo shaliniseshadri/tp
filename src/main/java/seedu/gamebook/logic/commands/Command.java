@@ -15,8 +15,8 @@ import seedu.gamebook.model.Model;
 public abstract class Command {
 
     private static final List<Command> COMMANDS = new ArrayList<Command>(
-        Arrays.asList(AddCommand.DUMMY, EditCommand.DUMMY, DeleteCommand.DUMMY, FindCommand.DUMMY, HelpCommand.DUMMY,
-            ClearCommand.DUMMY, ExitCommand.DUMMY)
+        Arrays.asList(AddCommand.DUMMY, EditCommand.DUMMY, DeleteCommand.DUMMY, ListCommand.DUMMY, FindCommand.DUMMY,
+            HelpCommand.DUMMY, ClearCommand.DUMMY, ExitCommand.DUMMY)
     );
     public static final ObservableList<Command> COMMAND_OBSERVABLE_LIST = FXCollections.observableArrayList(COMMANDS);
 

@@ -1,5 +1,7 @@
 package seedu.gamebook.model.util;
 
+import static seedu.gamebook.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Comparator;
 
 import seedu.gamebook.model.gameentry.GameEntry;
@@ -10,6 +12,8 @@ import seedu.gamebook.model.gameentry.GameEntry;
 public class GameEntriesDateComparator implements Comparator<GameEntry> {
     @Override
     public int compare(GameEntry gameOne, GameEntry gameTwo) {
+        requireAllNonNull(gameOne, gameTwo);
+        requireAllNonNull(gameOne.getDate(), gameTwo.getDate());
         return gameOne.compareTo(gameTwo);
     }
 }

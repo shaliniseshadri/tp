@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":GameBookParser" as GameBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "gameEntry:GameEntry" as GameEntry MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":StorageManager" as StorageManager STORAGE_COLOR
+end box
+
+[-> LogicManager : execute("add /g Poker /p 15")
+activate LogicManager
+
+LogicManager -> GameBookParser : parseCommand("add /g Poker /p 15", true)
+activate GameBookParser
+
+create AddCommandParser
+GameBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> GameBookParser
+deactivate AddCommandParser
+
+GameBookParser -> AddCommandParser : parse("/g Poker /p 15")
+activate AddCommandParser
+
+create GameEntry
+AddCommandParser -> GameEntry
+activate GameEntry
+GameEntry --> AddCommandParser : gameEntry
+deactivate GameEntry
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser :
+deactivate AddCommand
+
+AddCommandParser --> GameBookParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> GameBookParser
+destroy AddCommandParser
+
+GameBookParser --> LogicManager : a
+deactivate GameBookParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addGameEntry(gameEntry)
+activate Model
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand : result
+deactivate CommandResult
+
+AddCommand --> LogicManager :result
+deactivate AddCommand
+
+LogicManager -> StorageManager : save game book
+activate StorageManager
+
+StorageManager --> LogicManager
+deactivate StorageManager
+
+[<--LogicManager : result
+deactivate LogicManager
+@enduml

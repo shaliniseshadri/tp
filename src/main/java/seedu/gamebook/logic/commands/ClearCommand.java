@@ -13,6 +13,8 @@ public class ClearCommand extends Command {
 
     public static final ClearCommand DUMMY = new ClearCommand();
     public static final String COMMAND_WORD = "clear";
+    public static final String MESSAGE_USAGE = COMMAND_WORD;
+
     public static final String COMMAND_CONFIRMATION = "CONFIRM-CLEAR-ALL-ENTRIES";
     public static final String MESSAGE_SUCCESS = "Game entries have been cleared!";
     public static final String COMMAND_FORMAT = "clear";

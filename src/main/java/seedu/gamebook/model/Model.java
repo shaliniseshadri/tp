@@ -49,7 +49,7 @@ public interface Model {
      */
     void setGameBook(ReadOnlyGameBook gameBook);
 
-    /** Returns the AddressBook */
+    /** Returns the GameBook */
     ReadOnlyGameBook getGameBook();
 
     /**
@@ -64,15 +64,14 @@ public interface Model {
     void deleteGameEntry(GameEntry target);
 
     /**
-     * Adds the given game entry.
-     * {@code gameEntry} must not already exist in the game book.
+     * Adds the given game entry and sorts the list of game entries by date.
      */
     void addGameEntry(GameEntry gameEntry);
 
     /**
-     * Replaces the given game entry {@code target} with {@code editedGameEntry}.
+     * Replaces the given game entry {@code target} with {@code editedGameEntry} and sorts the list of game entries by
+     * date.
      * {@code target} must exist in the game book.
-     * The identity of {@code editedGameEntry} must not be the same as another existing entry in the game book.
      */
     void setGameEntry(GameEntry target, GameEntry editedGameEntry);
 

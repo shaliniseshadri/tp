@@ -44,6 +44,8 @@ public class GraphPanel extends UiPart<Region> {
      * @param k The number of dates to be plotted.
      */
     public void drawGraphOfLatestKDates(int k) {
+        assert k >= 0;
+
         averageProfits = Average.getAverageData(gameEntryList);
         lineChart.getData().clear();
         lineChart.getData().add(series);

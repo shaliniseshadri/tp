@@ -15,6 +15,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_FORMAT = COMMAND_WORD;
     public static final String MESSAGE_USAGE = COMMAND_FORMAT;
     public static final String COMMAND_SUMMARY = "Lists all game entries.\n\nFormat:\n" + COMMAND_FORMAT;
+    public static final ListCommand DUMMY = new ListCommand();
 
     @Override
     public String getCommandWord() {

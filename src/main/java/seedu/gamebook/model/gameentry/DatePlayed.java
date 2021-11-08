@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 
 public class DatePlayed implements Comparable<DatePlayed> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should a valid date and be in \"yyyy-MM-dd HH:mm\" or \"yyyy-MM-dd\" format.";
+            "Date should be a valid date and be in \"yyyy-MM-dd HH:mm\" or \"yyyy-MM-dd\" format.";
     public static final DateFormat DATETIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     public static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     private static final DatePlayed EMPTY = new DatePlayed(new Date(0));

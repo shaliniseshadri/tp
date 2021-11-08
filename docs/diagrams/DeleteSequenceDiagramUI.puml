@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+
+box Ui UI_COLOR_T1
+participant ":ResultDesplay" as ResultDisplay UI_COLOR
+participant ":StatsPanel" as StatsPanel UI_COLOR
+participant ":GraphPanel" as GraphPanel UI_COLOR
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+user -> MainWindow : executeCommand("delete 1")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("delete 1", true)
+activate LogicManager
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+
+MainWindow -> ResultDisplay : setFeedBackToUser(result)
+activate ResultDisplay
+
+deactivate ResultDisplay
+
+MainWindow -> StatsPanel : updateStats(gameEntryList)
+activate StatsPanel
+
+deactivate StatsPanel
+
+note over LogicManager
+    MainWindow passes a boolean,
+     isGameEntryListVisible, along with
+     the command to LogicManager
+end note
+
+MainWindow -> GraphPanel : updateGameEntryList(gameEntryList)
+activate GraphPanel
+
+deactivate GraphPanel
+
+@enduml

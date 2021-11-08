@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+<!-- Side navigation -->
+<div style="float:left" class="sidenav">
+    <a id="sec" href="#top">Home</a>
+    <a id="sec" href="#table-of-contents">Table of Contents</a>
+    <a id="sec" href="#quick-start">Quick Start</a>
+    <a id="sec" href="#terminology">Terminology</a>
+    <a id="norm" href="#syntax-and-symbols-used-in-the-user-guide">Syntax and symbols</a>
+    <a id="norm" href="#technical-terms">Technical terms</a>
+    <a id="norm" href="#gameentry-fields">GameEntry fields</a>
+    <a id="sec" href="#features">Features</a>
+    <a id="norm" href="#adding-a-game-entry-add">Adding a game entry</a>
+    <a id="norm" href="#listing-all-game-entries--list">Listing all game entries</a>
+    <a id="norm" href="#editing-a-game-entry--edit">Editing a game entry</a>
+    <a id="norm" href="#deleting-a-game-delete">Deleting a game entry</a>
+    <a id="norm" href="#finding-game-entries-find">Finding game entries</a>
+    <a id="norm" href="#clearing-all-data-clear">Clearing all game entries</a>
+    <a id="norm" href="#getting-help--help">Getting help</a>
+    <a id="norm" href="#exiting-the-program--exit">Exiting the program</a>
+    <a id="norm" href="#saving-the-data">Saving the data</a>
+    <a id="norm" href="#editing-the-data-file">Editing the data file</a>
+    <a id="norm" href="#archiving-data-files-coming-in-v20">Archiving data files</a>
+    <a id="sec" href="#faq">FAQ</a>
+    <a id="sec" href="#command-summary">Command summary</a>
+</div>
+
+<body>
+    <a id="top"></a>
+    {%- include head.html -%}
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content" style="padding-left: 220px">
+        <div class="wrapper">
+            {{ content }}
+        </div>
+    </main>
+
+</body>
+
+</html>

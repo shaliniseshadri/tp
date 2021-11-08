@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
-
+skinparam ArrowFontSize = 15
+skinparam ParicipantFontSize = 15
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":GameBookParser" as GameBookParser LOGIC_COLOR
@@ -13,11 +14,17 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete 1", true)
 activate LogicManager
 
-LogicManager -> GameBookParser : parseCommand("delete 1")
+LogicManager -> GameBookParser : parseCommand("delete 1", true)
 activate GameBookParser
+
+note over LogicManager
+    The boolean true signifies that
+     GameEntryList is visible, in which
+    case a delete command is allowed.
+end note
 
 create DeleteCommandParser
 GameBookParser -> DeleteCommandParser
@@ -63,6 +70,8 @@ deactivate CommandResult
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
+
+LogicManager ->]: saveGameBook(gameBook)
 
 [<--LogicManager
 deactivate LogicManager

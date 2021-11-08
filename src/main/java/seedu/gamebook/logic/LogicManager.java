@@ -38,11 +38,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText, boolean isGameEntryListVisible) throws CommandException,
+        ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = gameBookParser.parseCommand(commandText);
+        Command command = gameBookParser.parseCommand(commandText, isGameEntryListVisible);
         commandResult = command.execute(model);
 
         try {

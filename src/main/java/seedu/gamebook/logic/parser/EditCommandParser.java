@@ -41,11 +41,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_STARTAMOUNT).isPresent()
-                || argMultimap.getValue(PREFIX_ENDAMOUNT).isPresent()) {
+            || argMultimap.getValue(PREFIX_ENDAMOUNT).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         Index index;
+
+
+        EditGameEntryDescriptor editGameEntryDescriptor = new EditGameEntryDescriptor();
+
+        setEditGameEntryDescriptor(argMultimap, editGameEntryDescriptor);
+
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -53,46 +59,40 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), e);
         }
 
-        EditGameEntryDescriptor editGameEntryDescriptor = new EditGameEntryDescriptor();
-        try {
-            setEditGameEntryDescriptor(argMultimap, editGameEntryDescriptor);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(e.getMessage());
-        }
-
-
-        if (!editGameEntryDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
         return new EditCommand(index, editGameEntryDescriptor);
     }
 
     private void setEditGameEntryDescriptor(ArgumentMultimap argMultimap,
-                                            EditGameEntryDescriptor editGameEntryDescriptor) throws ParseException {
-
-        if (argMultimap.getValue(PREFIX_GAMETYPE).isPresent()) {
-            editGameEntryDescriptor.setGameType(
+                                            EditGameEntryDescriptor editGameEntryDescriptor) {
+        try {
+            if (argMultimap.getValue(PREFIX_GAMETYPE).isPresent()) {
+                editGameEntryDescriptor.setGameType(
                     ParserUtil.parseGameType(argMultimap.getValue(PREFIX_GAMETYPE).get()));
-        }
+            }
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editGameEntryDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_DURATION).isPresent()) {
-            editGameEntryDescriptor.setDuration(ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get()));
-        }
-        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
-            editGameEntryDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
-        }
-        if (argMultimap.getValue(PREFIX_PROFIT).isPresent()) {
-            editGameEntryDescriptor
-                .setEndAmount(ParserUtil.parseEndAmount(argMultimap.getValue(PREFIX_PROFIT).get()));
-            editGameEntryDescriptor
-                .setStartAmount(new StartAmount("0"));
-        }
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            editGameEntryDescriptor.setTags(ParserUtil.parseTags(argMultimap.getValue(PREFIX_TAG).get()));
+            if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+                editGameEntryDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+            }
+            if (argMultimap.getValue(PREFIX_DURATION).isPresent()) {
+                editGameEntryDescriptor
+                    .setDuration(ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get()));
+            }
+            if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+                editGameEntryDescriptor
+                    .setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
+            }
+            if (argMultimap.getValue(PREFIX_PROFIT).isPresent()) {
+                editGameEntryDescriptor
+                    .setEndAmount(ParserUtil.parseEndAmount(argMultimap.getValue(PREFIX_PROFIT).get()));
+                editGameEntryDescriptor
+                    .setStartAmount(new StartAmount("0"));
+            }
+            if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+                editGameEntryDescriptor.setTags(ParserUtil.parseTags(argMultimap.getValue(PREFIX_TAG).get()));
+            }
+        } catch (IllegalArgumentException e) {
+            editGameEntryDescriptor.setContainsInvalidParameter(true);
+            editGameEntryDescriptor.setErrorMessage(e.getMessage());
         }
     }
 }

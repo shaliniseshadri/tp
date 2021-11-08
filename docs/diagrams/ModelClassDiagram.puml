@@ -26,13 +26,21 @@ Class DatePlayed
 Class Duration
 Class Location
 Class Tag
+Class Average
+Class Median
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
+Class Ui #1D8900
+
 GameBook .up.|> ReadOnlyGameBook
+Ui .right.> Average
+Ui .right.> Median
+Average .right-> GameEntryList
+Median .right-> GameEntryList
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs

@@ -7,7 +7,10 @@ import java.text.DecimalFormat;
 
 public class Amount {
     public static final String MESSAGE_CONSTRAINTS =
-            "Cash values should be valid floating point numbers with at most 2 decimal places";
+            "Cash values should be valid floating point numbers between -1,000,000,000.00 and 1,000,000,000.00 with at"
+                + " most 2 decimal places";
+    private static final double UPPER_BOUND = 1000000000;
+    private static final double LOWER_BOUND = -1000000000;
     private static final String CASH_VALUE_FORMAT = "(?<!.)-?[0-9]*(\\.[0-9]{0,2})?(?!.)";
 
     private static final Amount EMPTY = new Amount();
@@ -53,7 +56,8 @@ public class Amount {
             return false;
         }
         return cashAmount.strip().matches(CASH_VALUE_FORMAT)
-            && Double.parseDouble(cashAmount.strip()) < Integer.MAX_VALUE;
+            && Double.parseDouble(cashAmount.strip()) <= UPPER_BOUND
+            && Double.parseDouble(cashAmount.strip()) >= LOWER_BOUND;
     }
 
     public double getAmount() {

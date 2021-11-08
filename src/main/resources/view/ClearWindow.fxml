@@ -13,7 +13,7 @@
     <Scene>
         <stylesheets>
             <URL value="@Fonts.css" />
-            <URL value="@HelpWindow.css" />
+            <URL value="@ClearWindow.css" />
         </stylesheets>
 
         <HBox alignment="CENTER">

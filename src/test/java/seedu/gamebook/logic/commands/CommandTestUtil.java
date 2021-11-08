@@ -105,7 +105,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredGameEntryList().size());
 
         GameEntry gameEntry = model.getFilteredGameEntryList().get(targetIndex.getZeroBased());
-        model.updateFilteredGameEntryList(game -> game.equals(gameEntry));
+
+        // Use == here to compare exact object. .equals is less strict.
+        model.updateFilteredGameEntryList(game -> game == gameEntry);
         assertEquals(1, model.getFilteredGameEntryList().size());
     }
 

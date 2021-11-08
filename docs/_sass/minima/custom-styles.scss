@@ -31,4 +31,3 @@ h2, h3, h4, h5, h6 {
     @include alert-variant(color-level($value, $alert-bg-level), color-level($value, $alert-border-level), color-level($value, $alert-color-level));
   }
 }
-

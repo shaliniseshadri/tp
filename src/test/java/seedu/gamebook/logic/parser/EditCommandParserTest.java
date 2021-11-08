@@ -5,11 +5,7 @@ import static seedu.gamebook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.gamebook.logic.parser.ArgumentTokenizer.MESSAGE_DUPLICATE_FLAGS;
 import static seedu.gamebook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.gamebook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.gamebook.logic.parser.ParserTestUtil.DATE_INVALID_WITH_PREFIX;
-import static seedu.gamebook.logic.parser.ParserTestUtil.DURATION_INVALID_WITH_PREFIX;
-import static seedu.gamebook.logic.parser.ParserTestUtil.ENDAMOUNT_INVALID_WITH_PREFIX;
 import static seedu.gamebook.logic.parser.ParserTestUtil.GAMEONE;
-import static seedu.gamebook.logic.parser.ParserTestUtil.PROFIT_INVALID_WITH_PREFIX;
 import static seedu.gamebook.logic.parser.ParserTestUtil.STARTAMOUNT_INVALID_WITH_PREFIX;
 import static seedu.gamebook.logic.parser.ParserTestUtil.TAG_EMPTY;
 import static seedu.gamebook.logic.parser.ParserTestUtil.VALID_DATE_1;
@@ -19,9 +15,6 @@ import static seedu.gamebook.logic.parser.ParserTestUtil.VALID_GAMETYPE_1;
 import static seedu.gamebook.logic.parser.ParserTestUtil.VALID_LOCATION_1;
 import static seedu.gamebook.logic.parser.ParserTestUtil.VALID_STARTAMOUNT_1;
 import static seedu.gamebook.logic.parser.ParserTestUtil.VALID_TAG_1;
-import static seedu.gamebook.logic.parser.ParserUtil.MESSAGE_INVALID_DATE;
-import static seedu.gamebook.logic.parser.ParserUtil.MESSAGE_INVALID_DURATION;
-import static seedu.gamebook.logic.parser.ParserUtil.MESSAGE_INVALID_PROFIT;
 import static seedu.gamebook.testutil.TypicalIndexes.INDEX_FIRST_GAMEENTRY;
 import static seedu.gamebook.testutil.TypicalIndexes.INDEX_SECOND_GAMEENTRY;
 import static seedu.gamebook.testutil.TypicalIndexes.INDEX_THIRD_GAMEENTRY;
@@ -44,10 +37,6 @@ public class EditCommandParserTest {
     public void parse_missingParts_failure() {
         // no index specified
         assertParseFailure(parser, GAMEONE.gameTypeWithPrefix, MESSAGE_INVALID_FORMAT);
-
-        // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
-
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
@@ -68,24 +57,20 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
-        // invalid profit
-        assertParseFailure(parser, "1" + PROFIT_INVALID_WITH_PREFIX, MESSAGE_INVALID_PROFIT);
-        // invalid flag
-        assertParseFailure(parser, "1" + STARTAMOUNT_INVALID_WITH_PREFIX, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + ENDAMOUNT_INVALID_WITH_PREFIX, MESSAGE_INVALID_FORMAT);
-        // invalid date
-        assertParseFailure(parser, "1" + DATE_INVALID_WITH_PREFIX, MESSAGE_INVALID_DATE);
-        // invalid duration
-        assertParseFailure(parser, "1" + DURATION_INVALID_WITH_PREFIX, MESSAGE_INVALID_DURATION);
+    public void parse_invalidValue_success() {
+        Index targetIndex = INDEX_FIRST_GAMEENTRY;
+        String userInput = targetIndex.getOneBased() + GAMEONE.gameTypeWithPrefix + " "
+            + GAMEONE.profitWithPrefix + "randomString";
+        EditGameEntryDescriptor descriptor;
+        descriptor = new EditGameEntryDescriptorBuilder()
+            .withGameType(VALID_GAMETYPE_1)
+            .build();
 
-        // valid startAmount followed by invalid endAmount
-        assertParseFailure(parser, 1 + GAMEONE.profitWithPrefix + DATE_INVALID_WITH_PREFIX,
-                MESSAGE_INVALID_DATE);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        // invalid profit and a valid gametype should return an EditCommand with a valid game type and empty profit
+        // descriptor
+        assertParseSuccess(parser, userInput, expectedCommand);
 
-        // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + DATE_INVALID_WITH_PREFIX + PROFIT_INVALID_WITH_PREFIX,
-                MESSAGE_INVALID_DATE);
     }
 
     @Test
@@ -112,7 +97,6 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_GAMEENTRY;
         String userInput = targetIndex.getOneBased() + GAMEONE.profitWithPrefix;
 
-        System.out.println(userInput);
 
         EditGameEntryDescriptor descriptor = new EditGameEntryDescriptorBuilder()
                 .withProfit(VALID_ENDAMOUNT_1.minus(VALID_STARTAMOUNT_1)).build();

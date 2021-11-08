@@ -106,22 +106,18 @@ public class AddCommandParserTest {
                     + GAMEONE.endAmountWithPrefix + GAMEONE.dateWithPrefix + GAMEONE.durationWithPrefix
                     + GAMEONE.locationWithPrefix, new AddCommand(expectedGameEntryNoTags));
 
-            // no startAmount
-            GameEntry expectedGameEntryNoStartAmount = new GameEntryBuilder(GAME_1).withStartAmount("").build();
-            assertParseSuccess(parser, GAMEONE.gameTypeWithPrefix + GAMEONE.endAmountWithPrefix
-                    + GAMEONE.dateWithPrefix + GAMEONE.durationWithPrefix + GAMEONE.tagWithPrefix
-                    + GAMEONE.locationWithPrefix, new AddCommand(expectedGameEntryNoStartAmount));
-
             // no date
             GameEntry expectedGameEntryNoDate = new GameEntryBuilder(GAME_1).withDatePlayed("").build();
             assertParseSuccess(parser, GAMEONE.gameTypeWithPrefix + GAMEONE.startAmountWithPrefix
                     + GAMEONE.endAmountWithPrefix + GAMEONE.durationWithPrefix + GAMEONE.tagWithPrefix
                     + GAMEONE.locationWithPrefix, new AddCommand(expectedGameEntryNoDate));
+
             // no duration
             GameEntry expectedGameEntryNoDuration = new GameEntryBuilder(GAME_1).withDuration("").build();
             assertParseSuccess(parser, GAMEONE.gameTypeWithPrefix + GAMEONE.startAmountWithPrefix
                 + GAMEONE.endAmountWithPrefix + GAMEONE.dateWithPrefix + GAMEONE.tagWithPrefix
                 + GAMEONE.locationWithPrefix, new AddCommand(expectedGameEntryNoDuration));
+
             // no location
             GameEntry expectedGameEntryNoLocation = new GameEntryBuilder(GAME_1).withLocation("").build();
             assertParseSuccess(parser, GAMEONE.gameTypeWithPrefix + GAMEONE.startAmountWithPrefix

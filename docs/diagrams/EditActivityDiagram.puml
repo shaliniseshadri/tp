@@ -3,15 +3,27 @@
 start
 :User enters input;
 :Parser parses input;
-if (valid edit command) then ([command parsed as
-EditCommand])
-:EditCommand is executed;
+if () then ([valid edit command])
+:command parsed as EditCommand;
+:EditCommand executed;
 :Copy of selected GameEntry
 created with edited fields;
 :Edited GameEntry replaces
 selected GameEntry;
-:Updated GameEntry list is shown;
-else ([Error message is shown])
+:Updated GameEntry list is saved to storage;
+:Updated GameEntry list shown;
+:Updated graph shown;
+:Updated statistics shown;
+if () then([GameEntry with same game
+name and date/datetime exists,
+or edited date is in future])
+:GameBook displays edit success message,
+along with alert message(s);
+else ([else])
+:GameBook displays edit success message;
+endif
+else ([invalid command format])
+:Error message shown;
 endif
 stop
 @enduml

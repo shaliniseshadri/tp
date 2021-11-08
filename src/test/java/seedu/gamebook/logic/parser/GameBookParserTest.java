@@ -27,6 +27,7 @@ public class GameBookParserTest {
 
     private final GameBookParser parser = new GameBookParser();
 
+    // Tests for parserCommand(String Command)
     @Test
     public void parseCommand_add() throws Exception {
         GameEntry gameEntry = new GameEntryBuilder().build();
@@ -54,7 +55,6 @@ public class GameBookParserTest {
         String userInput = EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_GAMEENTRY.getOneBased() + " "
                 + GameEntryUtil.getEditGameEntryDescriptorDetails(descriptor);
-        System.out.println(userInput);
         EditCommand command = (EditCommand) parser.parseCommand(userInput);
         assertEquals(new EditCommand(INDEX_FIRST_GAMEENTRY, descriptor), command);
     }
@@ -89,4 +89,117 @@ public class GameBookParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+    // Tests for parserCommand(String Command, boolean isGameEntryListShown)
+    @Test
+    public void parseCommand_withGameEntryListShown_parseSuccessAdd() throws Exception {
+        GameEntry gameEntry = new GameEntryBuilder().build();
+        AddCommand commandAdd = (AddCommand) parser
+            .parseCommand(GameEntryUtil.getAddCommand(gameEntry), true);
+        assertEquals(new AddCommand(gameEntry), commandAdd);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListNotShown_parseSuccessAdd() throws Exception {
+        GameEntry gameEntry = new GameEntryBuilder().build();
+        AddCommand commandAdd = (AddCommand) parser
+            .parseCommand(GameEntryUtil.getAddCommand(gameEntry), false);
+        assertEquals(new AddCommand(gameEntry), commandAdd);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListShown_parseSuccessClear() throws Exception {
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, true) instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListNotShown_parseSuccessClear() throws Exception {
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, false) instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListShown_parseSuccessDelete() throws Exception {
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_GAMEENTRY.getOneBased(), true);
+        assertEquals(new DeleteCommand(INDEX_FIRST_GAMEENTRY), command);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListNotShown_parseFailureDelete() throws Exception {
+        String userInput = DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_GAMEENTRY.getOneBased();
+        String message = DeleteCommand.MESSAGE_FAILURE_WITHOUT_GAME_LIST;
+        assertThrows(ParseException.class, message, () -> parser.parseCommand(userInput, false));
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListShown_parseSuccessEdit() throws Exception {
+        GameEntry gameEntry = new GameEntryBuilder().build();
+        EditGameEntryDescriptor descriptor = new EditGameEntryDescriptorBuilder(gameEntry).build();
+        String userInput = EditCommand.COMMAND_WORD + " "
+            + INDEX_FIRST_GAMEENTRY.getOneBased() + " "
+            + GameEntryUtil.getEditGameEntryDescriptorDetails(descriptor);
+        EditCommand command = (EditCommand) parser.parseCommand(userInput, true);
+        assertEquals(new EditCommand(INDEX_FIRST_GAMEENTRY, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListNotShown_parseFailureEdit() throws Exception {
+        GameEntry gameEntry = new GameEntryBuilder().build();
+        EditGameEntryDescriptor descriptor = new EditGameEntryDescriptorBuilder(gameEntry).build();
+        String userInput = EditCommand.COMMAND_WORD + " "
+            + INDEX_FIRST_GAMEENTRY.getOneBased() + " "
+            + GameEntryUtil.getEditGameEntryDescriptorDetails(descriptor);
+        String message = EditCommand.MESSAGE_FAILURE_WITHOUT_GAME_LIST;
+        assertThrows(ParseException.class, message, () -> parser.parseCommand(userInput, false));
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListShown_parseSuccessHelp() throws Exception {
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, true) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3", true) instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListNotShown_parseSuccessHelp() throws Exception {
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, false) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3", false) instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListShown_parseSuccessList() throws Exception {
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, true) instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3", true) instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_withGameEntryListNotShown_parseSuccessList() throws Exception {
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, false) instanceof ListCommand);
+        assertTrue(parser
+            .parseCommand(ListCommand.COMMAND_WORD + " 3", false) instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_unrecognisedInputWithGameEntryListShown_throwsParseException() {
+        assertThrows(ParseException.class,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.INVALID_COMMAND_MESSAGE), ()
+                -> parser.parseCommand("", true));
+    }
+
+    @Test
+    public void parseCommand_unrecognisedInputWithGameEntryListNotShown_throwsParseException() {
+        assertThrows(ParseException.class,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.INVALID_COMMAND_MESSAGE), ()
+                -> parser.parseCommand("", false));
+    }
+
+    @Test
+    public void parseCommand_unknownCommandWithGameEntryListShown_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand", true));
+    }
+
+    @Test
+    public void parseCommand_unknownCommandWithGameEntryListNotShown_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand", false));
+    }
+
 }

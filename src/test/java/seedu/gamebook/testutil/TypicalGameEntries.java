@@ -96,6 +96,6 @@ public class TypicalGameEntries {
                 POKER1_WITHOUT_TIME, POKER1_WITH_TIME,
                 POKER2_WITHOUT_TIME, POKER2_WITH_TIME,
                 BLACKJACK1_WITH_TIME, BLACKJACK2_WITH_TIME,
-                DARTS1_WITHOUT_TIME, DARTS2_WITHOUT_TIME));
+                DARTS2_WITHOUT_TIME, DARTS1_WITHOUT_TIME));
     }
 }

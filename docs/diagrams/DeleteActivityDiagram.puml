@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+start
+:User enters input;
+: UI component passes the user's input
+and visibility of GameEntryList
+to Logic component;
+:Parser parses input while taking account
+of the visiblity of GameEntryList;
+if () then ([Command is parsed as
+DeleteCommand])
+:DeleteCommand is executed;
+:Selected GameEntry is deleted from Storage;
+:GameEntryList is updated and shown;
+:Graph is updated and shown;
+:Statistics is updated and shown;
+:Command success message is displayed;
+else ([Exception is thrown])
+:Error message is displayed;
+endif
+
+stop
+@enduml

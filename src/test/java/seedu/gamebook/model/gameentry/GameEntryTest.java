@@ -134,22 +134,22 @@ public class GameEntryTest {
     @Test
     public void toStringTest() {
         assertEquals(
-                "Game name: Poker; Profit: -20.00; Date played: 2021-09-11 22:38; "
+                "Game type: Poker; Profit: -20.00; Date played: 2021-09-11 22:38; "
                         + "Game duration: 10m; Location: Marina Bay Sands",
                 POKER_WITH_TIME.toString()
         );
         assertEquals(
-                "Game name: Roulette; Profit: -19.88; Date played: 2021-09-11 22:38; "
+                "Game type: Roulette; Profit: -19.88; Date played: 2021-09-11 22:38; "
                         + "Game duration: 10m; Location: Marina Bay Sands",
                 ROULETTE_WITH_TIME.toString()
         );
         assertEquals(
-                "Game name: Poker; Profit: -19.88; Date played: 2021-09-11; "
+                "Game type: Poker; Profit: -19.88; Date played: 2021-09-11; "
                         + "Game duration: 10m; Location: Marina Bay Sands",
                 POKER_WITHOUT_TIME.toString()
         );
         assertEquals(
-                "Game name: Roulette; Profit: -19.88; Date played: 2021-09-11; "
+                "Game type: Roulette; Profit: -19.88; Date played: 2021-09-11; "
                         + "Game duration: 10m; Location: Marina Bay Sands",
                 ROULETTE_WITHOUT_TIME.toString()
         );
