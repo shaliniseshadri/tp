@@ -330,7 +330,7 @@ and contains a game entry with `GameName` "Poker".
 3. `LogicManager#execute()` calls `GameBookParser#parse()` which checks the validity of the command then parses the input.  
    Since the input and command format are valid, no error message is displayed.
 4. Next, a `GameEntryContainsKeywordPredicate` is created with the search keywords
-5. After parsing the input, a FindCommand is created and returned with the `GameEntryContainsKeywordPredicate` which is then 
+5. After parsing the input, a `FindCommand` is created and returned with the `GameEntryContainsKeywordPredicate` which is then 
    executed by calling `FindCommand#execute()`
 6. Then the `filteredGameEntries` list is updated with the `GameEntryContainsKeywordPredicate` by calling `Model#updateFilteredGameEntryList()`
 7. `FindCommand#execute()` returns a `CommandResult` which contains the number of entries matching the search keyword 
