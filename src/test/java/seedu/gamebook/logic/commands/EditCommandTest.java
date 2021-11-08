@@ -128,8 +128,13 @@ public class EditCommandTest {
 
         try {
             CommandResult commandResult = editCommand.execute(model);
-            assertEquals(String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, duplicateGameEntry,
-                    EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY), commandResult.getFeedbackToUser());
+            String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, duplicateGameEntry,
+                    EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY);
+            Model expectedModel = new ModelManager(new GameBook(model.getGameBook()), new UserPrefs());
+            expectedModel.setGameEntry(model.getFilteredGameEntryList().get(0), duplicateGameEntry);
+
+            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+            assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         } catch (CommandException e) {
             // Should not happen in this case
             assert false : e.getMessage();
@@ -152,7 +157,6 @@ public class EditCommandTest {
 
         // Update filtered list to show only first entry
         showGameEntryAtIndex(model, INDEX_FIRST_GAMEENTRY);
-
         // edit game entry in filtered list into a duplicate in gamebook
         GameEntry firstGameEntry = model.getFilteredGameEntryList().get(0);
         assert !firstGameEntry.getGameType().equals(lastGameEntry.getGameType())
@@ -162,8 +166,10 @@ public class EditCommandTest {
 
         try {
             CommandResult commandResult = editCommand.execute(model);
-            assertEquals(String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, duplicateGameEntry,
-                    EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY), commandResult.getFeedbackToUser());
+            String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, duplicateGameEntry,
+                    EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY);
+
+            assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         } catch (CommandException e) {
             // Should not happen in this case
             assert false : e.getMessage();
