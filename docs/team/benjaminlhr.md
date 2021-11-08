@@ -24,8 +24,8 @@ Given below are my contributions to the project.
     to suit the purpose of GameBook in v1.2 (Pull request [\#47](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/47))
   * Refactored `test/data` files to suit the purpose of GameBook in v1.2 (Pull request [\#71](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/71))
   * Modify behaviour of duplicate entries handling. Instead of throwing an exception when entries with the same
-    GAME_NAME and DATE or DATETIME are present, I changed it to only display an alert to user as it is possible to play
-    several games with the same GAME_NAME on the same day, and some users may also log several game entries at the same time.
+    `GAME_NAME` and `DATE` are present, I changed it to only display an alert to user as it is possible to play
+    several games with the same `GAME_NAME` on the same day, and some users may also log several game entries at the same time.
     (Pull request [\#112](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/112))
   * Modified graph plotting behaviour to display data points from the latest dates. (Pull request [\#137](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/137))
   
@@ -40,7 +40,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Made an initial modification of Quick Start & FAQ to suit the purpose of GameBook in v1.1 (Pull request [\#12](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/12))
     * Modified miscellaneous explanations to improve clarity (Pull requests [\#212](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/212), [\#235](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/235))
-    * Added explanation about auto-capitalization feature of GAME_NAME and LOCATION (Pull request [\#212](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/212))
+    * Added explanation about auto-capitalization feature of `GAME_NAME` and `LOCATION` (Pull request [\#212](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/212))
     * Added several screenshots to illustrate the usage of the app (Pull request [\#212](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/212))
   * Developers' Guide:
     * Updated product scope, NFR and glossary (Pull requests [\#29](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/29), [\#34](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/34))
@@ -48,7 +48,7 @@ Given below are my contributions to the project.
     * Refactored UiClassDiagram from AB3 (Pull requests [\#145](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/145), [\#221](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/221))
     * Made miscellaneous modifications to other UML diagrams and explanations. (Pull request [\#244](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/244)
 * **Project management**:
-  * Managed release `v1.3(final)` on GitHub.
+  * Managed release `v1.3(final)` and `v1.4` on GitHub.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#113](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/113), [\#114](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/114), [\#136](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/136)
