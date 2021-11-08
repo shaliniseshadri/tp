@@ -1,12 +1,18 @@
 package seedu.gamebook.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.gamebook.logic.commands.CommandTestUtil.GAME_ONE;
+import static seedu.gamebook.logic.commands.CommandTestUtil.GAME_TWO;
 import static seedu.gamebook.logic.commands.CommandTestUtil.VALID_ENDAMOUNT_2;
 import static seedu.gamebook.logic.commands.CommandTestUtil.VALID_GAMETYPE_2;
 import static seedu.gamebook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.gamebook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.gamebook.logic.commands.CommandTestUtil.showGameEntryAtIndex;
 import static seedu.gamebook.testutil.TypicalGameEntries.getTypicalGameBook;
 import static seedu.gamebook.testutil.TypicalIndexes.INDEX_FIRST_GAMEENTRY;
+import static seedu.gamebook.testutil.TypicalIndexes.INDEX_SECOND_GAMEENTRY;
 
 import java.util.function.Predicate;
 
@@ -14,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.gamebook.commons.core.index.Index;
 import seedu.gamebook.logic.commands.EditCommand.EditGameEntryDescriptor;
+import seedu.gamebook.logic.commands.exceptions.CommandException;
 import seedu.gamebook.model.GameBook;
 import seedu.gamebook.model.Model;
 import seedu.gamebook.model.ModelManager;
@@ -99,29 +106,41 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-    /*
+
     @Test
-    public void execute_duplicateGameEntryUnfilteredList_failure() {
+    public void execute_duplicateGameEntryUnfilteredList_alertsUser() {
         GameEntry firstGameEntry = model.getFilteredGameEntryList().get(INDEX_FIRST_GAMEENTRY.getZeroBased());
         EditGameEntryDescriptor descriptor = new EditGameEntryDescriptorBuilder(firstGameEntry).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_GAMEENTRY, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_GAME);
+        try {
+            CommandResult commandResult = editCommand.execute(model);
+            assertEquals(String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, firstGameEntry,
+                    EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY), commandResult.getFeedbackToUser());
+        } catch (CommandException e) {
+            // Should not happen in this case
+        }
     }
-*/
-    /*
+
+
     @Test
-    public void execute_duplicateGameEntryFilteredList_failure() {
+    public void execute_duplicateGameEntryFilteredList_alertsUser() {
         showGameEntryAtIndex(model, INDEX_FIRST_GAMEENTRY);
 
-        // edit game entry in filtered list into a duplicate in gamebook book
+        // edit game entry in filtered list into a duplicate in gamebook
         GameEntry gameEntryInList = model.getGameBook().getGameEntryList().get(INDEX_SECOND_GAMEENTRY.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_GAMEENTRY,
                 new EditGameEntryDescriptorBuilder(gameEntryInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_GAME);
+        try {
+            CommandResult commandResult = editCommand.execute(model);
+            assertEquals(String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, gameEntryInList,
+                    EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY), commandResult.getFeedbackToUser());
+        } catch (CommandException e) {
+            // Should not happen in this case
+        }
     }
-*/
+
 
     @Test
     public void execute_invalidGameEntryIndexUnfilteredList_failure() {
@@ -152,13 +171,13 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_USAGE);
     }
 
-    /*
+
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_GAMEENTRY, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_GAMEENTRY, GAME_ONE);
 
         // same values -> returns true
-        EditGameEntryDescriptor copyDescriptor = new EditGameEntryDescriptor(DESC_AMY);
+        EditGameEntryDescriptor copyDescriptor = new EditGameEntryDescriptor(GAME_ONE);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_GAMEENTRY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -172,11 +191,11 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_GAMEENTRY, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_GAMEENTRY, GAME_ONE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_GAMEENTRY, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_GAMEENTRY, GAME_TWO)));
     }
-*/
+
 
 }
