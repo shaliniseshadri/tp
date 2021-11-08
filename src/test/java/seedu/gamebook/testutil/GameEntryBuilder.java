@@ -117,7 +117,7 @@ public class GameEntryBuilder {
      */
     public GameEntryBuilder withDatePlayed (String datePlayed) {
         if (datePlayed.equals("")) {
-            this.date = DatePlayed.empty();
+            this.date = new DatePlayed();
             return this;
         }
         try {

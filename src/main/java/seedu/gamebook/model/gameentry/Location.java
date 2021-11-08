@@ -21,9 +21,7 @@ public class Location {
             String[] tmp = location.strip().split(" ");
 
             for (int i = 0; i < tmp.length; i++) {
-                tmp[i] = tmp[i].equals("")
-                        ? tmp[i]
-                        : tmp[i].substring(0, 1).toUpperCase() + tmp[i].substring(1).toLowerCase();
+                tmp[i] = fixCases(tmp[i]);
             }
             this.location = String.join(" ", tmp);
         } else {
@@ -40,6 +38,15 @@ public class Location {
 
     public static Location empty() {
         return EMPTY;
+    }
+
+    private static String fixCases(String str) {
+        if (str.length() == 0) {
+            return str;
+        }
+        String firstChar = str.substring(0, 1).toUpperCase();
+        String trailingChars = str.substring(1).toLowerCase();
+        return firstChar + trailingChars;
     }
 
     public boolean isEmpty() {

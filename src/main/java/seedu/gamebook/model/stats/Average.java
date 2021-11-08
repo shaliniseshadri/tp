@@ -29,7 +29,7 @@ public class Average {
             if (!preprocessedDates.containsKey(dateWithoutTime)) {
                 preprocessedDates.put(dateWithoutTime, new ArrayList<>());
             }
-            preprocessedDates.get(dateWithoutTime).add(gameEntry.getDifference());
+            preprocessedDates.get(dateWithoutTime).add(gameEntry.getProfit());
         });
 
         // Using preprocessedDates, populate processedDates, with dates as the keys and average profits as the values
@@ -42,7 +42,7 @@ public class Average {
     }
 
     public static Double getOverallAverage(List<GameEntry> gameEntryList) {
-        return gameEntryList.stream().mapToDouble(GameEntry::getDifference).average().orElse(0.00);
+        return gameEntryList.stream().mapToDouble(GameEntry::getProfit).average().orElse(0.00);
     }
 
 }
