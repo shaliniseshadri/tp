@@ -63,7 +63,7 @@ public class GameBookTest {
         gameBook.addGameEntry(POKER1_WITH_TIME);
 
         GameEntry editedPoker = new GameEntryBuilder(POKER1_WITH_TIME)
-                .withDatePlayed("12/10/21 11:36")
+                .withDatePlayed("2021-10-12 11:36")
                 .withStartAmount("1321.12")
                 .withEndAmount("0.12")
                 .withLocation("school")
