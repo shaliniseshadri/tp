@@ -26,7 +26,7 @@ public class ParserTestUtil {
     protected static final GameType VALID_GAMETYPE_1 = new GameType("Poker");
     protected static final StartAmount VALID_STARTAMOUNT_1 = new StartAmount("0.0");
     protected static final EndAmount VALID_ENDAMOUNT_1 = new EndAmount("100.0");
-    protected static final DatePlayed VALID_DATE_1 = new DatePlayed("1970-01-01 07:30");
+    protected static final DatePlayed VALID_DATE_1 = new DatePlayed("2021-01-01 10:00");
     protected static final Duration VALID_DURATION_1 = new Duration("10");
     protected static final Location VALID_LOCATION_1 = new Location("Sentosa");
     protected static final String VALID_TAG_1 = "lucky";
