@@ -23,18 +23,18 @@ Code Contributed: [RepoSense Link](https://nus-cs2103-ay2122s1.github.io/tp-dash
   * Participated in reviewing of PRs.
 
 ### **Enhancements and Adaptation from AddressBook**
-  * Handled the commands unit of the software
-    * `add`, `delete`, `edit`, `list`, and `exit` commands for initial adaptation in v1.2.
-  [[#41](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/41)].
-    * Refactored `/tag` parameter. [[#98](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/98)]
-    * `find` command for adaptation in v1.3. [[#113](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/113)]
-  * Refactored the macroscopic structure of components. [[#126](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/126)]
-    * Enforced separation and abstraction between Model and Logic components.
-    * Enforced dependency-inversion principle by making both Parser and Model subclasses depend on
-    an abstraction.
-    * Enforced further information hiding between interacting components of Parser and Model.
-    * A large scale refactoring given that the test suite depended on many of the changed components.
-  * Continuously managed and updated test suite. [[#66](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/66/files),
+* Handled the commands unit of the software
+  * `add`, `delete`, `edit`, `list`, and `exit` commands for initial adaptation in v1.2.
+[[#41](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/41)].
+  * Refactored `/tag` parameter. [[#98](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/98)]
+  * `find` command for adaptation in v1.3. [[#113](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/113)]
+* Refactored the macroscopic structure of components. [[#126](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/126)]
+  * Enforced separation and abstraction between Model and Logic components.
+  * Enforced dependency-inversion principle by making both Parser and Model subclasses depend on
+  an abstraction.
+  * Enforced further information hiding between interacting components of Parser and Model.
+  * A large scale refactoring given that the test suite depended on many of the changed components.
+* Continuously managed and updated test suite. [[#66](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/66/files),
 [#75](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/75), [#220](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/220)]
 
 ### **Documentation**
@@ -48,7 +48,7 @@ Code Contributed: [RepoSense Link](https://nus-cs2103-ay2122s1.github.io/tp-dash
   * Created a sidebar for navigation
   * Participated in review, proofreading, and general editing.
 
-### Review/Mentoring Contributions
+### **Review/Mentoring Contributions**
 * **Reviewed Pull Requests**
   * [Link](https://github.com/AY2122S1-CS2103T-W13-3/tp/pulls?q=is%3Apr+reviewed-by%3Adannylty+) to PRs approved by me
   * PRs with significant feedback: [[#91](https://github.com/AY2122S1-CS2103T-W13-3/tp/pull/91),
