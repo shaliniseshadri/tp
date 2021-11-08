@@ -227,8 +227,7 @@ launched `GameBook` and the app has loaded data from storage.
 1. The user inputs a command, such as `add /g Poker /p 35 /dur 40m /loc Resort World Sentosa Casino
    /dur 50m /date 2021-10-21 15:10` which calls upon `MainWindow#executeCommand()`.
 2. `MainWindow#executeCommand()` passes the user's input to `LogicManager#execute()`to process, which calls upon `GameBookParser#parseCommand()`.
-3. `GameBookParser#parseCommand()` parses the input with the help of `AddCommandParser#parse()`. If input is valid, a new `GameEntry` object is created,
-   followed by an `AddCommand` object containing the `GameEntry`. The `AddCommand` object is then returned by `GameBookParser#parseCommand()`. 
+3. `GameBookParser#parseCommand()` parses the input and returns an `AddCommand`. 
 4. `LogicManager#execute()` executes `AddCommand` by calling `AddCommand#execute()`, which adds the new entry to a `List` and sorts it by date.
 5. `AddCommand#execute()` then encapsulates the result of the command execution in a new `CommandResult` object
    to its caller, `LogicManager#execute()`.
