@@ -13,7 +13,7 @@ public class Median {
     public static Double getOverallMedian(List<GameEntry> gameEntryList) {
         try {
             double overallMedian;
-            DoubleStream sortedProfitList = gameEntryList.stream().mapToDouble(GameEntry::getDifference).sorted();
+            DoubleStream sortedProfitList = gameEntryList.stream().mapToDouble(GameEntry::getProfit).sorted();
             if (gameEntryList.size() % 2 == 0) {
                 overallMedian = sortedProfitList.skip((gameEntryList.size() / 2) - 1).limit(2).average().orElse(0.00);
             } else {

@@ -28,9 +28,18 @@ public class GameType {
         String strippedGameType = gameType.strip();
         String[] tmp = strippedGameType.split(" ");
         for (int i = 0; i < tmp.length; i++) {
-            tmp[i] = tmp[i].substring(0, 1).toUpperCase() + tmp[i].substring(1).toLowerCase();
+            tmp[i] = fixCases(tmp[i]);
         }
         this.gameType = String.join(" ", tmp);
+    }
+
+    private static String fixCases(String str) {
+        if (str.length() == 0) {
+            return str;
+        }
+        String firstChar = str.substring(0, 1).toUpperCase();
+        String trailingChars = str.substring(1).toLowerCase();
+        return firstChar + trailingChars;
     }
 
     /**

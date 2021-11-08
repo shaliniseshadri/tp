@@ -134,8 +134,9 @@ public class GameEntry implements Comparable<GameEntry> {
         return tags.contains(tag);
     }
 
-    public Double getDifference() {
-        return (this.endAmount.minus(this.startAmount)).getAmount();
+    public Double getProfit() {
+        Amount profit = endAmount.minus(startAmount);
+        return profit.getAmount();
     }
     /**
      * Returns a boolean indicating whether there are any tags.
@@ -167,7 +168,7 @@ public class GameEntry implements Comparable<GameEntry> {
         } else if (other instanceof GameEntry) {
             GameEntry tmp = (GameEntry) other;
             return gameType.equals(tmp.gameType)
-                    && getDifference().equals(tmp.getDifference())
+                    && getProfit().equals(tmp.getProfit())
                     && date.equals(tmp.date)
                     && durationMinutes.equals(tmp.durationMinutes)
                     && location.equals(tmp.location)
@@ -225,7 +226,6 @@ public class GameEntry implements Comparable<GameEntry> {
      * @return The compiled text.
      */
     public String getSearchableCorpus() {
-        // Maybe SLAP the tags thing to another method somewhere.
         return getGameType().toString() + " " + getLocation().toString()
                 + getTags()
                 .stream()

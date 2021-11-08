@@ -128,7 +128,7 @@ public class Duration {
     }
 
     public int getDurationMinutes() {
-        return this.durationMinutes;
+        return durationMinutes;
     }
 
     @Override

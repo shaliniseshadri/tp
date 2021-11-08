@@ -45,8 +45,7 @@ public class DatePlayed implements Comparable<DatePlayed> {
                 date = DATE_FORMAT.parse(trimmedString);
                 this.isTimeIndicated = false;
             } catch (ParseException parseException) {
-                // Will never happen
-                date = null;
+                throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
             }
         }
 
@@ -150,7 +149,7 @@ public class DatePlayed implements Comparable<DatePlayed> {
             return true;
         } else if (other instanceof DatePlayed) {
             DatePlayed tmp = (DatePlayed) other;
-            if (isTimeIndicated && !tmp.isTimeIndicated || !isTimeIndicated && tmp.isTimeIndicated) {
+            if (isTimeIndicated ^ tmp.isTimeIndicated) {
                 return false;
             }
             return isTimeIndicated && tmp.isTimeIndicated
