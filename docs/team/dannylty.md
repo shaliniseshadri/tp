@@ -21,6 +21,7 @@ Code Contributed: [RepoSense Link](https://nus-cs2103-ay2122s1.github.io/tp-dash
   * Set up links to code coverage tools and CI.
   * Provided an inspiration for the context of the project.
   * Participated in reviewing of PRs.
+
 ### **Enhancements and Adaptation from AddressBook**
   * Handled the commands unit of the software
     * `add`, `delete`, `edit`, `list`, and `exit` commands for initial adaptation in v1.2.
