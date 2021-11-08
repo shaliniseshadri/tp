@@ -554,7 +554,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 3.   
 
 
-**Use case: Finding an entry** 
+**Use case: Find entries by keyword** 
 
 **MSS** 
 
@@ -599,16 +599,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests for help
-2. A link is provided
+1. User requests for general help (`help` without a specific command)
+2. GameBook displays a list of command summary
 
    Use case ends.
 
 **Extensions**
+* 1a. User requests for help for a specific command (`help COMMAND`)
 
-* 3a. User cancels the operation
+  * 1a1. GameBook displays the command format for that command
+  
+    Use case ends.
 
-  Use case ends.
 
 ### Non-Functional Requirements
 
