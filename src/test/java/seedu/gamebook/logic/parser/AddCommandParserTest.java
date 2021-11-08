@@ -108,7 +108,6 @@ public class AddCommandParserTest {
 
             // no date
             GameEntry expectedGameEntryNoDate = new GameEntryBuilder(GAME_1).withDatePlayed("").build();
-            System.out.println(expectedGameEntryNoDate);
             assertParseSuccess(parser, GAMEONE.gameTypeWithPrefix + GAMEONE.startAmountWithPrefix
                     + GAMEONE.endAmountWithPrefix + GAMEONE.durationWithPrefix + GAMEONE.tagWithPrefix
                     + GAMEONE.locationWithPrefix, new AddCommand(expectedGameEntryNoDate));
