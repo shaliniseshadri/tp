@@ -106,38 +106,67 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
-
     @Test
     public void execute_duplicateGameEntryUnfilteredList_alertsUser() {
-        GameEntry firstGameEntry = model.getFilteredGameEntryList().get(INDEX_FIRST_GAMEENTRY.getZeroBased());
-        EditGameEntryDescriptor descriptor = new EditGameEntryDescriptorBuilder(firstGameEntry).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_GAMEENTRY, descriptor);
+        // In this test we are editing the first game entry into a duplicate of the last game entry
+        Index indexLastGameEntry = Index.fromOneBased(model.getFilteredGameEntryList().size());
+        GameEntry lastGameEntry = model.getFilteredGameEntryList().get(indexLastGameEntry.getZeroBased());
+        GameEntryBuilder lastGameEntryInList = new GameEntryBuilder(lastGameEntry);
+
+        assert !lastGameEntry.getEndAmount().equals(VALID_ENDAMOUNT_2);
+
+        GameEntry duplicateGameEntry = lastGameEntryInList
+                .withEndAmount(VALID_ENDAMOUNT_2.toString())
+                .build();
+        EditGameEntryDescriptor descriptor = new EditGameEntryDescriptorBuilder(duplicateGameEntry).build();
+
+        GameEntry firstGameEntry = model.getFilteredGameEntryList().get(0);
+        assert !firstGameEntry.getGameType().equals(lastGameEntry.getGameType())
+                || !(firstGameEntry.getDate().equals(lastGameEntry.getDate()))
+                : "Our edit should be introducing a new conflict, ie the conflict should not already exist";
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_GAMEENTRY, descriptor);
 
         try {
             CommandResult commandResult = editCommand.execute(model);
-            assertEquals(String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, firstGameEntry,
+            assertEquals(String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, duplicateGameEntry,
                     EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY), commandResult.getFeedbackToUser());
         } catch (CommandException e) {
             // Should not happen in this case
+            assert false: e.getMessage();
         }
     }
 
-
     @Test
     public void execute_duplicateGameEntryFilteredList_alertsUser() {
+        // We are editing the first game entry (the entry shown in filtered list) into a duplicate of the last entry
+        Index indexLastGameEntry = Index.fromOneBased(model.getFilteredGameEntryList().size());
+        GameEntry lastGameEntry = model.getFilteredGameEntryList().get(indexLastGameEntry.getZeroBased());
+        GameEntryBuilder lastGameEntryInList = new GameEntryBuilder(lastGameEntry);
+
+        assert !lastGameEntry.getEndAmount().equals(VALID_ENDAMOUNT_2);
+        GameEntry duplicateGameEntry = lastGameEntryInList
+                .withEndAmount(VALID_ENDAMOUNT_2.toString())
+                .build();
+
+        EditGameEntryDescriptor descriptor = new EditGameEntryDescriptorBuilder(duplicateGameEntry).build();
+
+        // Update filtered list to show only first entry
         showGameEntryAtIndex(model, INDEX_FIRST_GAMEENTRY);
 
         // edit game entry in filtered list into a duplicate in gamebook
-        GameEntry gameEntryInList = model.getGameBook().getGameEntryList().get(INDEX_SECOND_GAMEENTRY.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_GAMEENTRY,
-                new EditGameEntryDescriptorBuilder(gameEntryInList).build());
+        GameEntry firstGameEntry = model.getFilteredGameEntryList().get(0);
+        assert !firstGameEntry.getGameType().equals(lastGameEntry.getGameType())
+                || !(firstGameEntry.getDate().equals(lastGameEntry.getDate()))
+                : "Our edit should be introducing a new conflict, ie the conflict should not already exist";
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_GAMEENTRY, descriptor);
 
         try {
             CommandResult commandResult = editCommand.execute(model);
-            assertEquals(String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, gameEntryInList,
+            assertEquals(String.format(EditCommand.MESSAGE_EDIT_GAME_SUCCESS, duplicateGameEntry,
                     EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY), commandResult.getFeedbackToUser());
         } catch (CommandException e) {
             // Should not happen in this case
+            assert false: e.getMessage();
         }
     }
 
