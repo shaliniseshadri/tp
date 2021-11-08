@@ -17,10 +17,10 @@ Below lists my major contributions to the project.
 Code Contributed: [RepoSense Link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=dannylty&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=dannylty&tabRepo=AY2122S1-CS2103T-W13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 ### **Team-based Tasks**
-  * Set up the organisation group and repository.
-  * Set up links to code coverage tools and CI.
-  * Provided an inspiration for the context of the project.
-  * Participated in reviewing of PRs.
+* Set up the organisation group and repository.
+* Set up links to code coverage tools and CI.
+* Provided an inspiration for the context of the project.
+* Participated in reviewing of PRs.
 
 ### **Enhancements and Adaptation from AddressBook**
 * Handled the commands unit of the software
