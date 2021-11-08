@@ -132,7 +132,7 @@ public class EditCommandTest {
                     EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY), commandResult.getFeedbackToUser());
         } catch (CommandException e) {
             // Should not happen in this case
-            assert false: e.getMessage();
+            assert false : e.getMessage();
         }
     }
 
@@ -166,7 +166,7 @@ public class EditCommandTest {
                     EditCommand.MESSAGE_DUPLICATE_GAME_ENTRY), commandResult.getFeedbackToUser());
         } catch (CommandException e) {
             // Should not happen in this case
-            assert false: e.getMessage();
+            assert false : e.getMessage();
         }
     }
 
