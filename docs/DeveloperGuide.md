@@ -555,7 +555,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 3.   
 
 
-**Use case: Finding an entry** 
+**Use case: Find entries by keyword** 
 
 **MSS** 
 
