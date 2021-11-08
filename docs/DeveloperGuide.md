@@ -5,9 +5,7 @@ title: Developer Guide
 **Table of Contents**
 
 * [Acknowledgements](#acknowledgements)
-
 * [Setting up, getting started](#setting-up-getting-started)
-
 * [Design](#design)
     * [Architecture](#architecture)
     * [UI Component](#ui-component)
@@ -27,7 +25,6 @@ title: Developer Guide
     
 
 * [Appendix: Additional guides](#appendix-additional-guides)
-
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)

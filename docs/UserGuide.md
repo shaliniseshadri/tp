@@ -17,7 +17,6 @@ If you enjoy casual gambling sessions with your friends and family or love going
 ## Table of Contents
 
 * [Quick Start](#quick-start)
-
 * [Terminology](#terminology)
     * [Syntax and Symbols used in the User Guide](#syntax-and-symbols-used-in-the-user-guide)
     * [Technical Terms](#technical-terms)
@@ -39,7 +38,6 @@ If you enjoy casual gambling sessions with your friends and family or love going
 
 
 * [FAQ](#faq)
-
 * [Command Summary](#command-summary)
 
 
