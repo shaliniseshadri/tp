@@ -21,7 +21,7 @@ end box
 [-> LogicManager : execute("edit 1 /g Mahjong")
 activate LogicManager
 
-LogicManager -> GameBookParser : parseCommand("edit 1 /g Mahjong")
+LogicManager -> GameBookParser : parseCommand("edit 1 /g Mahjong", true)
 activate GameBookParser
 
 create EditCommandParser

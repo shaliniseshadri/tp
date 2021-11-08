@@ -256,7 +256,7 @@ Editing a game entry requires user input from the CLI. The `GameBook` parser wil
 is valid if
 * The list of games currently displayed is not empty, and the chosen index is a valid index.
 * At least one field is chosen to be edited.
-* The formats of all fields entered, such as game type, start amount, end amount, location etc must be in the correct format.
+* The formats of all fields entered, such as game name, start amount, end amount, location etc must be in the correct format.
 
 Assume that the user has already launched `GameBook` and the app currently displays this:
 ![GameBook UI](images/GameBook.png)
@@ -686,7 +686,7 @@ testers are expected to do more *exploratory* testing.
 ### Edit Command
 
 Suppose GameBook currently displays this:<br>
-<img src="images/GameBook.png" width="280" />
+<img src="images/GameBook.png" width="600" />
 
 1. Editing a game entry while the list of games displayed is not empty.
 
@@ -695,7 +695,7 @@ Suppose GameBook currently displays this:<br>
     1. Test case: `edit 1 /g mahjong`<br>
        Expected: First game entry has its name change from `Poker` to `Mahjong`. No other changes are observed.
 
-    1. Test case: `edit 1 /date 2021-09-22 12:40`<br>
+    1. Test case: `edit 1 /date 2021-09-21 12:39`<br>
        Expected: First game is now at index 2, while the game originally at index 2 is now at index 1. The list of games shown are still sorted by date.
 
     1. Test case: `edit 0 ...`<br>
@@ -760,8 +760,9 @@ Note: Use `list` to display the whole game entry list or `find [KEYWORDS]` to di
 1. Dealing with missing/corrupted data files
    
     1. Test case: Change the field of a game entry in `/data/gamebook.json` into an invalid argument for the field (eg. changing the startAmount to `abc123`) before opening GameBook.
-        1. Note: Correct format of arguments can be found in our [User Guide](UserGuide.md)
-    Expected: GameBook will open with an empty game list, and will overwrite the corrupted data file once a new game is added.
+        1. Note: Correct format of arguments can be found in our [User Guide](UserGuide.md).
+    
+        Expected: GameBook will open with an empty game list, and will overwrite the corrupted data file once a new game is added.
            
-    1. Test case: Change the field of a game entry in `/data/gamebook.json` into an invalid argument for the field (eg. changing the startAmount to `abc123`) while GameBook is open, then do some operation that edits the game entry list.
+    1. Test case: Change the field of a game entry in `/data/gamebook.json` into an invalid argument for the field (eg. changing the startAmount to `abc123`) while GameBook is open, then do some operation that edits the game entry list. <br>
     Expected: GameBook will overwrite the erroneous data and continue functioning as per normal.

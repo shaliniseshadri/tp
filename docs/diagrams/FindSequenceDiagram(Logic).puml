@@ -21,7 +21,7 @@ end box
 [-> LogicManager : execute("find poker sentosa")
 activate LogicManager
 
-LogicManager -> GameBookParser : parseCommand("find poker sentosa")
+LogicManager -> GameBookParser : parseCommand("find poker sentosa", true)
 activate GameBookParser
 
 create FindCommandParser
