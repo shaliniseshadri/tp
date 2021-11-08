@@ -3,8 +3,13 @@ layout: page
 title: DevOps guide
 ---
 
-* Table of Contents
-{:toc}
+**Table of Contents**
+* [Documentation guide](#build-automation)
+* [Testing guide](#continuous-integration-ci)
+  * [Code Coverage](#code-coverage)
+  * [Repository-wide checks](#repository-wide-checks)
+* [Making a release](#making-a-release)
+
 
 --------------------------------------------------------------------------------------------------------------------
 

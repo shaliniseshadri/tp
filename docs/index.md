@@ -22,11 +22,11 @@ GameBook is based on [_AddressBook Level-3_](https://github.com/se-edu/addressbo
 
 Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
-Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
+Some code adapted from [http://code.makery.ch/library/javafx-8-tutorial/](#http://code.makery.ch/library/javafx-8-tutorial/) by Marco Jakob
 
-Copyright by Gil Kalai - https://gilkalai.wordpress.com/
+Copyright by Gil Kalai - [https://gilkalai.wordpress.com/](#https://gilkalai.wordpress.com/)
 - gamebook_icon.png
 
-Copyright by Jan Jan Kovařík - http://glyphicons.com/
+Copyright by Jan Jan Kovařík - [http://glyphicons.com/](#http://glyphicons.com/)
 - calendar.png
 - edit.png

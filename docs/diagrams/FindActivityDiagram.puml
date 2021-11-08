@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+start
+:User enters input;
+:Parser parses input;
+if () then ([valid find command])
+    :GameEntryContainsKeywordPredicate
+    created with specified search terms;
+    :Command parsed as FindCommand
+    with GameEntryContainsKeywordPredicate;
+    :FindCommand executed;
+    :filteredGameEntries updated with
+    GameEntryContainsKeywordPredicate;
+    :GameBook displays success message and
+    updates displayed game entries list, graph
+    and statistics;
+else ([invalid command format])
+    :Error message shown;
+endif
+stop
+@enduml
